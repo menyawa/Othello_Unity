@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 321}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 917, y: 271}
-  m_MaxSize: {x: 22012, y: 10021}
+  m_MinSize: {x: 909, y: 250}
+  m_MaxSize: {x: 22004, y: 10000}
   vertical: 0
-  controlID: 11175
+  controlID: 3856
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -325,9 +325,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.2492023, y: 1.9951248, z: 3.3614135}
+    m_Target: {x: -0.2882799, y: 0.06797314, z: 3.9773874}
     speed: 2
-    m_Value: {x: 1.2492023, y: 1.9951248, z: 3.3614135}
+    m_Value: {x: -0.2882799, y: 0.06797314, z: 3.9773874}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -355,13 +355,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.47192276, y: -0.049673367, z: 0.026644945, w: -0.87983614}
+    m_Target: {x: -0.45791975, y: -0.0713346, z: 0.03689649, w: -0.8853586}
     speed: 2
-    m_Value: {x: -0.47192276, y: -0.049673367, z: 0.026644945, w: -0.87983614}
+    m_Value: {x: -0.45791978, y: -0.0713346, z: 0.03689649, w: -0.88535863}
   m_Size:
-    m_Target: 35.60007
+    m_Target: 19.499401
     speed: 2
-    m_Value: 35.60007
+    m_Value: 19.499401
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -402,7 +402,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: caf3f3ff36fdf4ff6267f6ff1ccbfbffd403fcff6408fcff2c6afcffb002feffb202fefff60afefff80afefffa0afeff1c12feff1e12feffc6dcffff7eebffff88ebffff52efffff00000000
+    m_ExpandedIDs: e4fbffff00000000e62d00005c2e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -463,34 +463,34 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Font
+    - Assets/Model
   m_ViewMode: 1
   m_StartGridSize: 61
   m_LastFolders:
-  - Assets/Font
+  - Assets/Model
   m_LastFoldersGridSize: 61
   m_LastProjectPath: C:\Users\ikejun\Documents\Unity\Othello
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6c490000
-    m_LastClickedID: 18796
-    m_ExpandedIDs: 00000000743100003835000000ca9a3b
+    m_SelectedIDs: 942b0000
+    m_LastClickedID: 11156
+    m_ExpandedIDs: 00000000ec290000be2a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Image
-      m_OriginalName: Image
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 13624
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -504,7 +504,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000743100003835000000ca9a3b
+    m_ExpandedIDs: 00000000ec290000be2a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 88370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
