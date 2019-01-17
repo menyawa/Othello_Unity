@@ -801,6 +801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 6
 --- !u!114 &114262864949870608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -873,6 +875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 2
 --- !u!114 &114512717752259454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -885,6 +889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 5
 --- !u!114 &114526981684723906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -897,6 +903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 4
 --- !u!114 &114536642142738420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -939,6 +947,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 1
 --- !u!114 &114706944867261982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -951,6 +961,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 3
 --- !u!114 &114719223501087206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,6 +1035,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 7
 --- !u!114 &114896982079738164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1095,3 +1109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a, type: 2}
+  row: 0
+  column: 0
