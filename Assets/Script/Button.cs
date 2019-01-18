@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
+	[SerializeField] private GameObject turnNumberPanel;
 	[SerializeField] private int turnNumber;
-	[SerializeField] private GameObject button;
 	
 	// Use this for initialization
 	void Start () {
@@ -16,11 +17,18 @@ public class Button : MonoBehaviour
 	void Update () {
 		
 	}
+
+	public void startButton()
+	{
+		turnNumberPanel.SetActive(true);
+		Destroy(this.gameObject);
+	}
 	
 	//先手・後手を選択する関数
 	public void selectTurnNumber()
 	{
 		GameController.turnNumber = turnNumber;
-		Destroy(button);
+		//DontDestroyOnLoad(GameObject.Find("GameController"));
+		SceneManager.LoadScene("Game");
 	}
 }

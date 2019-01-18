@@ -53,7 +53,6 @@ public class GameController : MonoBehaviour {
 	}
 	
 	//CPU側の処理手順を示した関数
-	//FIXME:CPUが打った後、盤面の更新をさせないとならない
 	private void cpuProcess()
 	{
 		if (turnNumber == 0) turnNumber = 1;
