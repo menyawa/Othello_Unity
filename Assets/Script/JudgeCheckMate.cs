@@ -5,11 +5,13 @@ using UnityEngine;
 public class JudgeCheckMate : MonoBehaviour
 {
     public int passCount { set; get; }
+    public bool checkmate;
 
     // Start is called before the first frame update
     void Start()
     {
         passCount = 0;
+        checkmate = false;
     }
 
     // Update is called once per frame

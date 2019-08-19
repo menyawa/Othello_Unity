@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Process : MonoBehaviour
 {
-	
 	//次の手を考える関数
 	public static string nextHand(int[,] grids)
 	{

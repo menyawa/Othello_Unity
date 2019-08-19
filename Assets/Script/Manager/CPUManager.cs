@@ -19,25 +19,24 @@ public class CPUManager : MonoBehaviour
     }
 
     //CPU側の処理手順を示した関数
-    private void cpuProcess() {
+    public void cpuProcess() {
         if (GameController.turnNumber == 0) GameController.turnNumber = 1;
         else GameController.turnNumber = 0;
 
         if (Process.passed()) {
-            GameController.logManager.plusLog("CPU:パス");
-            GameController.judgeCheckMate.passCount++;
-            checkmate = GameController.judgeCheckMate.judgeCheckmate();
+            GameController.uiManager._log.plusLog("CPU:パス");
+            GameController.gridManager._judgeCheckMate.passCount++;
         } else {
-            string hand = Process.nextHand(hand);
+            string hand = Process.nextHand();
             GameController.gridManager.grids = Process.nextGrid(hand);
 
             //ログを送信
-            GameController.logManager.plusLog("CPU:" + hand);
+            GameController.uiManager._log.plusLog("CPU:" + hand);
         }
 
         if (GameController.turnNumber == 0) GameController.turnNumber = 1;
         else GameController.turnNumber = 0;
 
-        GameController.isPlaced = false;
+        GameController.playerIsPlaced = false;
     }
 }

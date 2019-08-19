@@ -1,4 +1,7 @@
 2019/08/19
+gridsをintの配列から、gridの配列に変更
+それに伴いUpdateGridを整備
+
 UIManagerを追加、logManagerを移動
 logManagerの中身を多少削減
 JudgeCheckMateを追加

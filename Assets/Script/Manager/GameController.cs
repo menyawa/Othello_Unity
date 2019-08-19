@@ -5,8 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 	public static int turnNumber = 0;
 	public static bool playerIsBlack;
-	public static bool isPlaced = false;
-	public static bool checkmate = false;
+    public static bool playerIsPlaced = false;
 
     public static GridManager gridManager;
     public static UIManager uiManager;
@@ -16,11 +15,10 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         initManagers();
-        
+
         //プレイヤーが後手の場合、まずコンピューターに打たせる
         //FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
         //なので、今の所先手しか選べない(0で初期化しているのはそれが理由)
-
         playerIsBlack = true;
         if (turnNumber == 1)
 		{
@@ -31,25 +29,33 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//プレイヤーの処理
-		//打つ、盤面の更新はstoneでやってくれるのでここで記述せずとも良い
-		if (!isPlaced && !checkmate)
-		{
-			gridManager._judgeCheckMate.passCount = 0;
-			if (Process.passed())
-			{
-				uiManager._log.plusLog("Player:パス");
-				isPlaced = true;
-                gridManager._judgeCheckMate.passCount++;
-			}
-		}
-		
-		//CPU側の処理
-		if (isPlaced && !checkmate)
-			cpuProcess();
-		
-		if(checkmate)
-			checkmateGame();
+        //プレイヤーの処理
+        //打つ、盤面の更新はstoneでやってくれるのでここで記述せずとも良い
+        if (!gridManager._judgeCheckMate.checkmate) {
+            if (!playerIsPlaced) {
+                gridManager._judgeCheckMate.passCount = 0;
+                if (Process.passed()) {
+                    uiManager._log.plusLog("Player:パス");
+                    playerIsPlaced = true;
+                    gridManager._judgeCheckMate.passCount++;
+                }
+            }
+
+            gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
+
+            //勝敗の処理を更新しているため、ここでも終わっていないか判断する必要がある
+            if (playerIsPlaced && !gridManager._judgeCheckMate.checkmate) {
+                cpuManager.cpuProcess();
+                playerIsPlaced = false;
+            }
+
+            //CPUは一瞬で打ち終わるため、ログの描写は一回でOK
+            uiManager._log.overWriteLogText();
+
+            if (gridManager._judgeCheckMate.checkmate) {
+                clear.clearProgress();
+            }
+        }
 	}
 
     private void initManagers() {

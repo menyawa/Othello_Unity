@@ -11,7 +11,7 @@ public class Clear : MonoBehaviour
     [SerializeField] private GameObject computerWinObject;
     [SerializeField] private GameObject DrawObject;
 
-    [SerializeField] private GameObject point;
+    [SerializeField] private Text pointText;
     
     // Start is called before the first frame update
     void Start()
@@ -25,10 +25,9 @@ public class Clear : MonoBehaviour
         
     }
 
-    public void clearProgress(int blackCount, int whiteCount)
+    public void clearProgress()
     {
         clearMenu.SetActive(true);
-        Text pointText = point.GetComponent<Text>();
         pointText.text = "Point:";
 
         if (blackCount > whiteCount)

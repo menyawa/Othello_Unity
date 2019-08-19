@@ -28,7 +28,7 @@ public class Log : MonoBehaviour
 		log += text + "\n";
 	}
 
-    public void overWriteLog() {
+    public void overWriteLogText() {
         _text.text = log;
         //テキストを更新したあと、一番下まで送る
         _scrollRect.verticalNormalizedPosition = 0;
