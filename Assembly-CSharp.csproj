@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Clear.cs" />
     <Compile Include="Assets\Script\GameController.cs" />
-    <Compile Include="Assets\Script\ManagerLog.cs" />
+    <Compile Include="Assets\Script\LogManager.cs" />
     <Compile Include="Assets\Script\Process.cs" />
     <Compile Include="Assets\Script\Stone.cs" />
     <Compile Include="Assets\Script\Timer.cs" />

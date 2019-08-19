@@ -8,16 +8,22 @@ public class GameController : MonoBehaviour {
 	public static bool isPlaced = false;
 	public static bool checkmate = false;
 	public static int passCount;
+
 	public const int GRIDSIZE = 8;
 	public const int NUMBEROFSEARCHING = 1000;
 	public static int[,] grids = new int[GRIDSIZE, GRIDSIZE];
 
+
+    public static LogManager logManager;
 	public static Clear clear;
 	
 	// Use this for initialization
 	void Start () {
-		//初期化
-		for (int i = 0; i < GRIDSIZE; i++)
+        logManager = GameObject.Find("Scroll View").GetComponent<LogManager>();
+        clear = gameObject.GetComponent<Clear>();
+
+        //初期化
+        for (int i = 0; i < GRIDSIZE; i++)
 		{
 			for (int j = 0; j < GRIDSIZE; j++)
 				grids[i, j] = 0;
@@ -37,8 +43,6 @@ public class GameController : MonoBehaviour {
 		}
 		else
 			playerIsBlack = true;
-
-		clear = this.gameObject.GetComponent<Clear>();
 	}
 	
 	// Update is called once per frame
@@ -50,7 +54,7 @@ public class GameController : MonoBehaviour {
 			passCount = 0;
 			if (Process.passed())
 			{
-				ManagerLog.plusLog("Player:パス");
+				logManager.plusLog("Player:パス");
 				isPlaced = true;
 				passCount++;
 			}
@@ -72,7 +76,7 @@ public class GameController : MonoBehaviour {
 			
 		if (Process.passed())
 		{
-			ManagerLog.plusLog("CPU:パス");
+			logManager.plusLog("CPU:パス");
 			passCount++;
 			checkmate = Process.judgeCheckmate(grids, turnNumber);
 		}
@@ -82,7 +86,7 @@ public class GameController : MonoBehaviour {
 			grids = Process.nextGrid(grids, hand);
 			
 			//ログを送信
-			ManagerLog.plusLog("CPU:" + hand);
+			logManager.plusLog("CPU:" + hand);
 		}
 		
 		if (turnNumber == 0) turnNumber = 1;
