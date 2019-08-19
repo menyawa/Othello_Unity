@@ -1,4 +1,9 @@
 2019/08/19
+UIManagerを追加、logManagerを移動
+logManagerの中身を多少削減
+JudgeCheckMateを追加
+その他各種Managerを追加、そこに各種処理を仮移動
+
 GridManagerを追加し、そこにGrid関連を移動
 
 Timerをオブジェクト志向仕様に改訂

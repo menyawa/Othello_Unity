@@ -61,10 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Clear.cs" />
-    <Compile Include="Assets\Script\GameController.cs" />
-    <Compile Include="Assets\Script\GridManager.cs" />
-    <Compile Include="Assets\Script\LogManager.cs" />
+    <Compile Include="Assets\Script\JudgeCheckMate.cs" />
+    <Compile Include="Assets\Script\Manager\Clear.cs" />
+    <Compile Include="Assets\Script\Manager\CPUManager.cs" />
+    <Compile Include="Assets\Script\Manager\GameController.cs" />
+    <Compile Include="Assets\Script\Manager\GridManager.cs" />
+    <Compile Include="Assets\Script\Manager\UIManager.cs" />
     <Compile Include="Assets\Script\Process.cs" />
     <Compile Include="Assets\Script\Stone.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Script\UI\Button\ExitButton.cs" />
     <Compile Include="Assets\Script\UI\Button\SelectTurnNumberButton.cs" />
     <Compile Include="Assets\Script\UI\Button\StartButton.cs" />
+    <Compile Include="Assets\Script\UI\Log.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/ikejun/Documents/Unity/Othello/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

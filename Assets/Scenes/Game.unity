@@ -112,6 +112,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &113673269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113673270}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &113673270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113673269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 319333210}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &119021022
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,8 +325,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 319333210}
-  - component: {fileID: 319333212}
-  - component: {fileID: 319333211}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -310,48 +339,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319333209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 113673270}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &319333211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319333209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1c3b5e1a787a8941b45410ea74e09d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clearMenu: {fileID: 814889564}
-  playerWinObject: {fileID: 1303460565}
-  computerWinObject: {fileID: 1895858655}
-  DrawObject: {fileID: 473173635}
-  point: {fileID: 781182727}
---- !u!114 &319333212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319333209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe85089994222bd46baddc676a3bcfa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &473173635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6261616537826050932, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
-    type: 3}
-  m_PrefabInstance: {fileID: 6261616538352945756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &616680955
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,26 +410,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &781182727 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6261616536849742232, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
-    type: 3}
-  m_PrefabInstance: {fileID: 6261616538352945756}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &814889564 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6261616537451935237, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
-    type: 3}
-  m_PrefabInstance: {fileID: 6261616538352945756}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1303460565 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6261616538600084098, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
-    type: 3}
-  m_PrefabInstance: {fileID: 6261616538352945756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1525982089
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,14 +440,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1895858655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6261616537131887394, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
-    type: 3}
-  m_PrefabInstance: {fileID: 6261616538352945756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &357593267244362100
 PrefabInstance:
   m_ObjectHideFlags: 0

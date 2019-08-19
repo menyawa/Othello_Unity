@@ -8,15 +8,15 @@ public class Process : MonoBehaviour
 	public static string nextHand(int[,] grids)
 	{
 		//FIXME:マスごとの評価値(もっといい言い方があるかも？)
-		int[,] scoreOfGrid = new int[GameController.GRIDSIZE, GameController.GRIDSIZE];
+		int[,] scoreOfGrid = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
 		string hand;
 		int maxScore;
 		int rowOfMaxScore;
 		int columnOfMaxScore;
 		//それぞれのマスの評価値を計算する処理
-		for (int row = 0; row < GameController.GRIDSIZE; row++)
+		for (int row = 0; row < GridManager.GRIDSIZE; row++)
 		{
-			for (int column = 0; column < GameController.GRIDSIZE; column++)
+			for (int column = 0; column < GridManager.GRIDSIZE; column++)
 			{
 				//そもそも置けない場合、それ以上やっても意味はないので次へ
 				if (!canPutDown(grids, row, column))
@@ -83,9 +83,9 @@ public class Process : MonoBehaviour
 		maxScore = scoreOfGrid[0, 0];
 		rowOfMaxScore = 0;
 		columnOfMaxScore = 0;
-		for (int row = 0; row < GameController.GRIDSIZE; row++)
+		for (int row = 0; row < GridManager.GRIDSIZE; row++)
 		{
-			for (int column = 0; column < GameController.GRIDSIZE; column++)
+			for (int column = 0; column < GridManager.GRIDSIZE; column++)
 			{
 				if (maxScore < scoreOfGrid[row, column])
 				{
@@ -129,16 +129,6 @@ public class Process : MonoBehaviour
 			return grids;
 		}
 		
-		//勝敗を判断する関数
-		public static bool judgeCheckmate(int[,] grids, int turnNumber)
-		{
-			//2回パスされていない場合、まだ打てるマスがあるということ
-			if (GameController.passCount != 2)
-				return false;
-
-			return true;
-		}
-		
 		//四隅の場合、評価値を足す(あるいは引く)関数
 		public static int plusOrMinusScore(int row, int column)
 		{
@@ -179,10 +169,10 @@ public class Process : MonoBehaviour
 		public static int searchMaxScore(int[,] grids, out int rowOfMaxScore, out int columnOfMaxScore)
 		{
 			int[,] scoreOfGrids = grids;
-			scoreOfGrids = new int[GameController.GRIDSIZE, GameController.GRIDSIZE];
-			for (int row = 0; row < GameController.GRIDSIZE; row++)
+			scoreOfGrids = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
+			for (int row = 0; row < GridManager.GRIDSIZE; row++)
 			{
-				for (int column = 0; column < GameController.GRIDSIZE; column++)
+				for (int column = 0; column < GridManager.GRIDSIZE; column++)
 					scoreOfGrids[row, column] = calculateScoreOfGrid(grids, row, column);
 			}
 			
@@ -190,9 +180,9 @@ public class Process : MonoBehaviour
 			int maxScore = scoreOfGrids[0, 0];
 			rowOfMaxScore = 0;
 			columnOfMaxScore = 0;
-			for (int row = 0; row < GameController.GRIDSIZE; row++)
+			for (int row = 0; row < GridManager.GRIDSIZE; row++)
 			{
-				for (int column = 0; column < GameController.GRIDSIZE; column++)
+				for (int column = 0; column < GridManager.GRIDSIZE; column++)
 				{
 					if (maxScore < scoreOfGrids[row, column])
 					{
@@ -262,7 +252,7 @@ public class Process : MonoBehaviour
 		row += vecRow;
 		column += vecColumn;
 		//インデックスが0から始まるため-1している
-		if (row < 0 || column < 0 || row > GameController.GRIDSIZE - 1 || column > GameController.GRIDSIZE - 1)
+		if (row < 0 || column < 0 || row > GridManager.GRIDSIZE - 1 || column > GridManager.GRIDSIZE - 1)
 			return false;
 		if (grids[row, column] == stone)
 			return false;
@@ -272,7 +262,7 @@ public class Process : MonoBehaviour
 		//さらにその隣を調べていく
 		column += vecColumn;
 		row += vecRow;
-		while (row >= 0 && column >= 0　&& row < GameController.GRIDSIZE && column < GameController.GRIDSIZE)
+		while (row >= 0 && column >= 0　&& row < GridManager.GRIDSIZE && column < GridManager.GRIDSIZE)
 		{
 			if (grids[row, column] == 0) 
 				return false;
@@ -343,10 +333,10 @@ public class Process : MonoBehaviour
 	public static bool passed()
 	{
 		bool pass = true;
-		for (int row = 0; row < GameController.GRIDSIZE; row++)
+		for (int row = 0; row < GridManager.GRIDSIZE; row++)
 		{
-			for (int column = 0; column < GameController.GRIDSIZE; column++)
-				if (canPutDown(GameController.grids, row, column)) pass = false;
+			for (int column = 0; column < GridManager.GRIDSIZE; column++)
+				if (canPutDown(GameController.gridManager.grids, row, column)) pass = false;
 		}
 		
 		return pass;
@@ -355,10 +345,10 @@ public class Process : MonoBehaviour
 	//二次元配列をコピーする関数
 	public static int[,] copyArray(int[,] array)
 	{
-		int[,] copyArr = new int[GameController.GRIDSIZE, GameController.GRIDSIZE];
-		for (int row = 0; row < GameController.GRIDSIZE; row++)
+		int[,] copyArr = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
+		for (int row = 0; row < GridManager.GRIDSIZE; row++)
 		{
-			for (int column = 0; column < GameController.GRIDSIZE; column++)
+			for (int column = 0; column < GridManager.GRIDSIZE; column++)
 				copyArr[row, column] = array[row, column];
 		}
 		
