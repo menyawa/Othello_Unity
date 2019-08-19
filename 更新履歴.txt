@@ -1,4 +1,6 @@
 2019/08/19
+GridManagerを追加し、そこにGrid関連を移動
+
 Timerをオブジェクト志向仕様に改訂
 
 gitIgnoreを追加

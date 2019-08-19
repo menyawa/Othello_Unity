@@ -9,10 +9,9 @@ public class GameController : MonoBehaviour {
 	public static bool checkmate = false;
 	public static int passCount;
 
-	public const int GRIDSIZE = 8;
 	public const int NUMBEROFSEARCHING = 1000;
-	public static int[,] grids = new int[GRIDSIZE, GRIDSIZE];
 
+    public static GridManager gridmanager;
     public static Timer timer;
     public static LogManager logManager;
 	public static Clear clear;
@@ -21,15 +20,6 @@ public class GameController : MonoBehaviour {
 	void Awake () {
         initManagers();
         
-        for (int row = 0; row < GRIDSIZE; row++)
-		{
-			for (int column = 0; column < GRIDSIZE; column++)
-				grids[row, column] = 0;
-		}
-		//-1しているのはインデックスが0から始まるため
-		grids[GRIDSIZE / 2 - 1, GRIDSIZE / 2 - 1] = grids[GRIDSIZE / 2, GRIDSIZE / 2] = 2;
-		grids[GRIDSIZE / 2 - 1, GRIDSIZE / 2] = grids[GRIDSIZE / 2, GRIDSIZE / 2 - 1] = 1;
-
         //プレイヤーが後手の場合、まずコンピューターに打たせる
         //FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
         //なので、今の所先手しか選べない(0で初期化しているのはそれが理由)
@@ -66,6 +56,7 @@ public class GameController : MonoBehaviour {
 	}
 
     private void initManagers() {
+        gridmanager = GameObject.Find("GridManager").GetComponent<GridManager>();
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         logManager = GameObject.Find("Scroll View").GetComponent<LogManager>();
         clear = gameObject.GetComponent<Clear>();
