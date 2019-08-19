@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 	public static int turnNumber = 0;
+	public static bool playerIsBlack;
 	public static bool isPlaced = false;
 	public static bool checkmate = false;
 	public static int passCount;
 	public const int GRIDSIZE = 8;
 	public const int NUMBEROFSEARCHING = 1000;
 	public static int[,] grids = new int[GRIDSIZE, GRIDSIZE];
+
+	public static Clear clear;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,8 +29,16 @@ public class GameController : MonoBehaviour {
 		//プレイヤーが後手の場合、まずコンピューターに打たせる
 		//FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
 		//なので、今の所先手しか選べない(0で初期化しているのはそれが理由)
+		
 		if (turnNumber == 1)
+		{
+			playerIsBlack = false;
 			cpuProcess();
+		}
+		else
+			playerIsBlack = true;
+
+		clear = this.gameObject.GetComponent<Clear>();
 	}
 	
 	// Update is called once per frame
@@ -39,6 +50,7 @@ public class GameController : MonoBehaviour {
 			passCount = 0;
 			if (Process.passed())
 			{
+				ManagerLog.plusLog("Player:パス");
 				isPlaced = true;
 				passCount++;
 			}
@@ -60,6 +72,7 @@ public class GameController : MonoBehaviour {
 			
 		if (Process.passed())
 		{
+			ManagerLog.plusLog("CPU:パス");
 			passCount++;
 			checkmate = Process.judgeCheckmate(grids, turnNumber);
 		}
@@ -67,6 +80,9 @@ public class GameController : MonoBehaviour {
 		{
 			string hand = Process.nextHand(grids);
 			grids = Process.nextGrid(grids, hand);
+			
+			//ログを送信
+			ManagerLog.plusLog("CPU:" + hand);
 		}
 		
 		if (turnNumber == 0) turnNumber = 1;
@@ -78,26 +94,28 @@ public class GameController : MonoBehaviour {
 	void checkmateGame()
 	{
 		int blackCount = 0;
-		int WhiteCount = 0;
+		int whiteCount = 0;
 		for (int row = 0; row < GRIDSIZE; row++) {
 			for (int column = 0; column < GRIDSIZE; column++)
 			{
 				//点数計算用に石の数をカウントしておく
 				if (grids[row, column] == 1) blackCount++;
-				if (grids[row, column] == 2) WhiteCount++;
+				if (grids[row, column] == 2) whiteCount++;
 			}
 		}
+
+		clear.clearProgress(blackCount, whiteCount);
 			
 		Debug.Log("チェックメイト");
-		if (blackCount > WhiteCount)
+		if (blackCount > whiteCount)
 		{
 			Debug.Log("勝ち：黒");
-			Debug.Log("ポイント：" + (blackCount - WhiteCount));
+			Debug.Log("ポイント：" + (blackCount - whiteCount));
 		}
-		else if(blackCount < WhiteCount)
+		else if(blackCount < whiteCount)
 		{
 			Debug.Log("勝ち：白");
-			Debug.Log("ポイント：" + (WhiteCount - blackCount));
+			Debug.Log("ポイント：" + (whiteCount - blackCount));
 		}
 		else
 			Debug.Log("引き分け");

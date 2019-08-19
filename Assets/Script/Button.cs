@@ -23,6 +23,11 @@ public class Button : MonoBehaviour
 		turnNumberPanel.SetActive(true);
 		Destroy(this.gameObject);
 	}
+
+	public void ContinueButton()
+	{
+		turnNumberPanel.SetActive(true);
+	}
 	
 	//先手・後手を選択する関数
 	public void selectTurnNumber()
@@ -30,5 +35,10 @@ public class Button : MonoBehaviour
 		GameController.turnNumber = turnNumber;
 		//DontDestroyOnLoad(GameObject.Find("GameController"));
 		SceneManager.LoadScene("Game");
+	}
+
+	public void backTitleButton()
+	{
+		SceneManager.LoadScene("Title");
 	}
 }

@@ -31,6 +31,9 @@ public class Stone : MonoBehaviour
 		
 		string hand = Process.shapingNumber(row, column);
 		GameController.grids = Process.nextGrid(GameController.grids, hand);
+		
+		//ログを送信
+		ManagerLog.plusLog("Player:" + hand);
 		GameController.isPlaced = true;
 	}
 	
