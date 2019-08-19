@@ -1,4 +1,7 @@
 2019/08/19
+canPutDownを分離
+打てるかどうかまでの処理を書いた
+
 gridsをintの配列から、gridの配列に変更
 それに伴いUpdateGridを整備
 

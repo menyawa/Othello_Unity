@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Grid.cs" />
+    <Compile Include="Assets\Script\JudgeCanPutDown.cs" />
     <Compile Include="Assets\Script\JudgeCheckMate.cs" />
     <Compile Include="Assets\Script\Manager\Clear.cs" />
     <Compile Include="Assets\Script\Manager\CPUManager.cs" />

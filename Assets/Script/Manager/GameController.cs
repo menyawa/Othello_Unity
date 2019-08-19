@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour {
                     uiManager._log.plusLog("Player:パス");
                     playerIsPlaced = true;
                     gridManager._judgeCheckMate.passCount++;
+                } else {
+
                 }
             }
 

@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     public const int GRIDSIZE = 8;
     public Grid[,] grids = new Grid[GRIDSIZE, GRIDSIZE];
 
+    public JudgeCanPutDown _judgeCanPutDown;
     public UpdateGrid _updateGrid;
     public JudgeCheckMate _judgeCheckMate;
 
@@ -65,5 +66,16 @@ public class GridManager : MonoBehaviour
 
         blackPoint = blackCount;
         whitePoint = whiteCount;
+    }
+
+    //パスかどうかを判断する関数
+    public static bool passed() {
+        bool pass = true;
+        for (int row = 0; row < GridManager.GRIDSIZE; row++) {
+            for (int column = 0; column < GridManager.GRIDSIZE; column++)
+                if (canPutDown(GameController.gridManager.grids, row, column)) pass = false;
+        }
+
+        return pass;
     }
 }
