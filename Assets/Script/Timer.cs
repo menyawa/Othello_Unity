@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private GameObject playerTimerObject;
-    [SerializeField] private GameObject computerTimerObject;
-    private Text playerTimerText;
-    private Text computerTimerText;
+    [SerializeField] private Text playerTimerText;
+    [SerializeField] private Text computerTimerText;
     private float playerTimeForMinutes;
     private float computerTimeForMinutes;
     private float playerTimeForSecond;
@@ -18,8 +16,6 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTimerText = playerTimerObject.GetComponent<Text>();
-        computerTimerText = computerTimerObject.GetComponent<Text>();
         playerTimeForMinutes = 10;
         computerTimeForMinutes = 10;
     }
@@ -27,13 +23,27 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.playerIsBlack)
-        {
-            if (playerTimeForSecond > 0)
+        countTime();
+    }
+
+    private void countTime() {
+        if (GameController.playerIsBlack) {
+            if (playerTimeForSecond > 0) {
                 playerTimeForSecond -= Time.deltaTime;
-            else
-            {
-                
+            } else {
+                if (playerTimeForMinutes > 0) {
+                    playerTimeForMinutes--;
+                    playerTimeForSecond += 60;
+                }
+            }
+        } else {
+            if (computerTimeForSecond > 0) {
+                playerTimeForSecond -= Time.deltaTime;
+            } else {
+                if (computerTimeForMinutes > 0) {
+                    playerTimeForMinutes--;
+                    playerTimeForSecond += 60;
+                }
             }
         }
     }

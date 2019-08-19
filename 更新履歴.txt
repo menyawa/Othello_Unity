@@ -1,7 +1,9 @@
 2019/08/19
+Timerをオブジェクト志向仕様に改訂
+
 gitIgnoreを追加
 
-LogManagerをインスタンス仕様に改訂
+LogManagerをオブジェクト指向仕様に改訂
 
 Buttonの類いを分離
 

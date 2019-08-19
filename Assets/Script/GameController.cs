@@ -13,36 +13,33 @@ public class GameController : MonoBehaviour {
 	public const int NUMBEROFSEARCHING = 1000;
 	public static int[,] grids = new int[GRIDSIZE, GRIDSIZE];
 
-
+    public static Timer timer;
     public static LogManager logManager;
 	public static Clear clear;
 	
 	// Use this for initialization
-	void Start () {
-        logManager = GameObject.Find("Scroll View").GetComponent<LogManager>();
-        clear = gameObject.GetComponent<Clear>();
-
-        //初期化
-        for (int i = 0; i < GRIDSIZE; i++)
+	void Awake () {
+        initManagers();
+        
+        for (int row = 0; row < GRIDSIZE; row++)
 		{
-			for (int j = 0; j < GRIDSIZE; j++)
-				grids[i, j] = 0;
+			for (int column = 0; column < GRIDSIZE; column++)
+				grids[row, column] = 0;
 		}
 		//-1しているのはインデックスが0から始まるため
 		grids[GRIDSIZE / 2 - 1, GRIDSIZE / 2 - 1] = grids[GRIDSIZE / 2, GRIDSIZE / 2] = 2;
 		grids[GRIDSIZE / 2 - 1, GRIDSIZE / 2] = grids[GRIDSIZE / 2, GRIDSIZE / 2 - 1] = 1;
-			
-		//プレイヤーが後手の場合、まずコンピューターに打たせる
-		//FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
-		//なので、今の所先手しか選べない(0で初期化しているのはそれが理由)
-		
-		if (turnNumber == 1)
+
+        //プレイヤーが後手の場合、まずコンピューターに打たせる
+        //FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
+        //なので、今の所先手しか選べない(0で初期化しているのはそれが理由)
+
+        playerIsBlack = true;
+        if (turnNumber == 1)
 		{
 			playerIsBlack = false;
 			cpuProcess();
-		}
-		else
-			playerIsBlack = true;
+		}	
 	}
 	
 	// Update is called once per frame
@@ -67,6 +64,12 @@ public class GameController : MonoBehaviour {
 		if(checkmate)
 			checkmateGame();
 	}
+
+    private void initManagers() {
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
+        logManager = GameObject.Find("Scroll View").GetComponent<LogManager>();
+        clear = gameObject.GetComponent<Clear>();
+    }
 	
 	//CPU側の処理手順を示した関数
 	private void cpuProcess()
