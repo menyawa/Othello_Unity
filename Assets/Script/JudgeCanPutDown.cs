@@ -24,9 +24,9 @@ public class JudgeCanPutDown
             return true; // 右下
         if (canPutDown(gridNumbers, row, column, -1, -1))
             return true; // 左上
-        if (canPutDown(gridNumbers, row, column, 1, -1))
+        if (canPutDown(gridNumbers, row, column, -1, -1))
             return true; // 右上
-        if (canPutDown(gridNumbers, row, column, -1, 1))
+        if (canPutDown(gridNumbers, row, column, 1, -1))
             return true; // 左下
 
         // どの方向もだめな場合はここには打てない

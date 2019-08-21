@@ -45,7 +45,7 @@ public class NextGrid
     /// <param name="vecColumn"></param>
     /// <param name="vecRow"></param>
     /// <returns></returns>
-    private int[,] reverse(int[,] gridNumbers, int row, int column, int vecColumn, int vecRow) {
+    private int[,] reverse(int[,] gridNumbers, int row, int column, int vecRow, int vecColumn) {
         int stone = GameController.turnNumber + 1;
         row += vecRow;
         column += vecColumn;

@@ -1,4 +1,6 @@
 2019/08/22
+reverseとscoreInDirectionのrowとcolumnが逆になっていたので修正
+
 TitleUIのturnNumberButtonに２重にコンポーネントが入っていたので修正
 canPutDownのrow, columnを入れ替えた関係で配列外参照が起こっていたので修正
 

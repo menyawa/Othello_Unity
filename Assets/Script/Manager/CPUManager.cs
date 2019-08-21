@@ -183,7 +183,7 @@ public class CPUManager
     }
 
     //指定された方向のひっくり返せる個数を調べる関数
-    public int checkScoreInDirection(int[,] gridNumbers, int row, int column, int vecColumn, int vecRow) {
+    public int checkScoreInDirection(int[,] gridNumbers, int row, int column, int vecRow, int vecColumn) {
         int stone = GameController.turnNumber + 1;
         int scoreInDirection = 0;
         row += vecRow;
