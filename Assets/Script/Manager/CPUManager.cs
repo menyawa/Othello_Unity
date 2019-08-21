@@ -137,22 +137,22 @@ public class CPUManager
         if (!GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column))
             return -1024;
 
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
-            score += checkScoreInDirection(gridNumbers, row, column, 1, 0); // 右
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, 1))
-            score += checkScoreInDirection(gridNumbers, row, column, 0, 1); // 下
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 0))
-            score += checkScoreInDirection(gridNumbers, row, column, -1, 0); // 左
+            score += checkScoreInDirection(gridNumbers, row, column, 0, 1); // 右
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
+            score += checkScoreInDirection(gridNumbers, row, column, 1, 0); // 下
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, -1))
-            score += checkScoreInDirection(gridNumbers, row, column, 0, -1); // 上
+            score += checkScoreInDirection(gridNumbers, row, column, 0, -1); // 左
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 0))
+            score += checkScoreInDirection(gridNumbers, row, column, -1, 0); // 上
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 1))
             score += checkScoreInDirection(gridNumbers, row, column, 1, 1); // 右下
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, -1))
             score += checkScoreInDirection(gridNumbers, row, column, -1, -1); // 左上
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, -1))
-            score += checkScoreInDirection(gridNumbers, row, column, 1, -1); // 右上
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 1))
-            score += checkScoreInDirection(gridNumbers, row, column, -1, 1); // 左下
+            score += checkScoreInDirection(gridNumbers, row, column, -1, 1); // 右上
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, -1))
+            score += checkScoreInDirection(gridNumbers, row, column, 1, -1); // 左下
 
         return score;
     }

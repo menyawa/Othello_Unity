@@ -16,22 +16,22 @@ public class NextGrid
         gridNumbers[row, column] = stone;
 
         //ここからひっくり返す処理
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
-            gridNumbers = reverse(gridNumbers, row, column, 1, 0);// 右
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, 1))
-            gridNumbers = reverse(gridNumbers, row, column, 0, 1); // 下
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 0))
-            gridNumbers = reverse(gridNumbers, row, column, -1, 0); // 左
+            gridNumbers = reverse(gridNumbers, row, column, 0, 1);// 右
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
+            gridNumbers = reverse(gridNumbers, row, column, 1, 0); // 下
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, -1))
-            gridNumbers = reverse(gridNumbers, row, column, 0, -1); // 上
+            gridNumbers = reverse(gridNumbers, row, column, 0, -1); // 左
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 0))
+            gridNumbers = reverse(gridNumbers, row, column, -1, 0); // 上
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 1))
             gridNumbers = reverse(gridNumbers, row, column, 1, 1); // 右下
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, -1))
             gridNumbers = reverse(gridNumbers, row, column, -1, -1); // 左上
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, -1))
-            gridNumbers = reverse(gridNumbers, row, column, 1, -1); // 右上
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 1))
-            gridNumbers = reverse(gridNumbers, row, column, -1, 1); // 左下
+            gridNumbers = reverse(gridNumbers, row, column, -1, 1); // 右上
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, -1))
+            gridNumbers = reverse(gridNumbers, row, column, 1, -1); // 左下
 
         return gridNumbers;
     }
