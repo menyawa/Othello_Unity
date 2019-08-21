@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Square : MonoBehaviour, IPointerClickHandler
+public class Grid : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int _row;
     [SerializeField] private int _column;

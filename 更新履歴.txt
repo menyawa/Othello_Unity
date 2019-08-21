@@ -1,4 +1,7 @@
 2019/08/22
+SquareをGridに再度リネーム
+GridDataを削除
+
 nextGrid, reverseをまとめて分離
 
 gridsを再度int型の二次元配列に変更
