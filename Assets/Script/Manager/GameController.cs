@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour {
 
             gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
 
+
             //勝敗の処理を更新しているため、ここでも終わっていないか判断する必要がある
             if (playerIsPlaced && !gridManager._judgeCheckMate.checkmate) {
                 cpuManager.cpuProcess();

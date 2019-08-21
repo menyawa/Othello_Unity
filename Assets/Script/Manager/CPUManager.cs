@@ -100,9 +100,11 @@ public class CPUManager
                     //2回打てなかった場合、もう探索は意味なしなので抜ける
                     if (GameController.gridManager._judgeCheckMate.judgeCheckmate()) break;
                 }
-
             }
         }
+
+        //探索中のパスカウントの加算をここで取り消す
+        GameController.gridManager._judgeCheckMate.passCount = 0;
 
         //上で求めた評価値の配列から、最高の評価値のマスの行、列を探索する処理
         maxScore = scoreOfGrid[0, 0];

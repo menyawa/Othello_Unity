@@ -1,4 +1,6 @@
 2019/08/22
+CPUの探索中のパスカウントが取り消されてなかったので修正
+
 reverseとscoreInDirectionのrowとcolumnが逆になっていたので修正
 
 TitleUIのturnNumberButtonに２重にコンポーネントが入っていたので修正
