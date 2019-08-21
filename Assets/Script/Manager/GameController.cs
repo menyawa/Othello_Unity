@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         initGameController();
+        gridManager.initGridManager();
 
         //プレイヤーが後手の場合、まずコンピューターに打たせる
         //FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
@@ -29,7 +30,7 @@ public class GameController : MonoBehaviour {
 	}
 
     void Start() {
-        gridManager.initGridManager();
+       
 
     }
 
@@ -40,12 +41,10 @@ public class GameController : MonoBehaviour {
         if (!gridManager._judgeCheckMate.checkmate) {
             if (!playerIsPlaced) {
                 gridManager._judgeCheckMate.passCount = 0;
-                if (GridManager.checkPassed(gridManager.grids)) {
-                    uiManager._log.plusLog("Player:パス");
+                if (GridManager.checkPassed(gridManager.gridStoneNumbers)) {
+                    uiManager._log.plusLog("Player", true);
                     playerIsPlaced = true;
                     gridManager._judgeCheckMate.passCount++;
-                } else {
-
                 }
             }
 

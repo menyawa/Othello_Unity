@@ -6,7 +6,5 @@ public class GridData
 {
     public int _row { set; get; }
     public int _column { set; get; }
-
-    public int beforeStone { set; get; }
-    public int nowStone { set; get; }
+    public int _placeStoneNumber { set; get; }
 }
