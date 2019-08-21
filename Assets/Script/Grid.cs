@@ -37,6 +37,14 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         if (pointerEventData.pointerId != -1)
             return;
 
+        //Debug.Log("row:" + _row + " " + "column:" + _column);
+        //Debug.Log(GameController.gridManager.gridStoneNumbers[_row, _column]);
+        Debug.Log(GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column));
+        Debug.Log(GameController.playerIsPlaced);
+
+        Debug.Log("Before");
+        printDebugGrids();
+
         //置けない場合、もう置いた場合はダメ
         if (!GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column) || GameController.playerIsPlaced)
             return;
@@ -47,8 +55,10 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         //ログを送信
         GameController.uiManager._log.plusLog("Player", false, _row, _column);
 
-        updateStones();
         GameController.playerIsPlaced = true;
+
+        Debug.Log("After");
+        printDebugGrids();
     }
 
     //シーンの盤面に置かれている石を更新する関数
@@ -67,10 +77,23 @@ public class Grid : MonoBehaviour, IPointerClickHandler
             }
         } else {
             //もともと石が置かれていて石の更新があった場合、半回転させる
-            _placedStoneObject.transform.Rotate(0, 180, 0);
+            _placedStoneObject.transform.Rotate(0, 0, 180);
         }
 
         //置かれている石が何色かを更新
         _placedStoneNumber = GameController.gridManager.gridStoneNumbers[_row, _column];
+    }
+
+    /// <summary>
+    /// デバッグ用に、Consoleに数字で盤面状況を吐き出す関数
+    /// </summary>
+    public static void printDebugGrids() {
+        for (int row = 0; row < GridManager.GRIDSIZE; row++) {
+            string text = "";
+            for (int column = 0; column < GridManager.GRIDSIZE; column++) {
+                text += GameController.gridManager.gridStoneNumbers[row, column] + " ";
+            }
+            Debug.Log(text);
+        }
     }
 }

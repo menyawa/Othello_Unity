@@ -52,10 +52,10 @@ public class GameController : MonoBehaviour {
 
 
             //勝敗の処理を更新しているため、ここでも終わっていないか判断する必要がある
-            if (playerIsPlaced && !gridManager._judgeCheckMate.checkmate) {
-                cpuManager.cpuProcess();
-                playerIsPlaced = false;
-            }
+            //if (playerIsPlaced && !gridManager._judgeCheckMate.checkmate) {
+            //    cpuManager.cpuProcess();
+            //    playerIsPlaced = false;
+            //}
 
             //CPUは一瞬で打ち終わるため、ログの描写は一回でOK
             uiManager._log.overWriteLogText();
