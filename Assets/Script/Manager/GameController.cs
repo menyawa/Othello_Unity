@@ -27,15 +27,20 @@ public class GameController : MonoBehaviour {
 			cpuManager.cpuProcess();
 		}	
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Start() {
+        gridManager.initGridManager();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         //プレイヤーの処理
         //打つ、盤面の更新はstoneでやってくれるのでここで記述せずとも良い
         if (!gridManager._judgeCheckMate.checkmate) {
             if (!playerIsPlaced) {
                 gridManager._judgeCheckMate.passCount = 0;
-                if (Process.passed()) {
+                if (GridManager.checkPassed(gridManager.grids)) {
                     uiManager._log.plusLog("Player:パス");
                     playerIsPlaced = true;
                     gridManager._judgeCheckMate.passCount++;

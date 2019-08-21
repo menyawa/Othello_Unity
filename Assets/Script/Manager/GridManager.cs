@@ -9,10 +9,9 @@ public class GridManager : MonoBehaviour
     public GameObject _stonePrefab;
 
     public const int GRIDSIZE = 8;
-    public Grid[,] grids = new Grid[GRIDSIZE, GRIDSIZE];
+    public GridData[,] grids = new GridData[GRIDSIZE, GRIDSIZE];
 
     public JudgeCanPutDown _judgeCanPutDown;
-    public UpdateGrid _updateGrid;
     public JudgeCheckMate _judgeCheckMate;
 
     // Start is called before the first frame update
@@ -28,13 +27,13 @@ public class GridManager : MonoBehaviour
     }
 
     public void initGridManager() {
-        initGrid();
+        initGrids();
 
         blackPoint = 2;
         whitePoint = 2;
     }
 
-    public void initGrid() {
+    public void initGrids() {
         for (int row = 0; row < GRIDSIZE; row++) {
             for (int column = 0; column < GRIDSIZE; column++) {
                 grids[row, column].beforeStone = 0;
@@ -68,12 +67,16 @@ public class GridManager : MonoBehaviour
         whitePoint = whiteCount;
     }
 
-    //パスかどうかを判断する関数
-    public static bool passed() {
+    /// <summary>
+    /// パスかどうかを判断する関数
+    /// </summary>
+    /// <param name="grids"></param>
+    /// <returns></returns>
+    public static bool checkPassed(GridData[,] grids) {
         bool pass = true;
         for (int row = 0; row < GridManager.GRIDSIZE; row++) {
             for (int column = 0; column < GridManager.GRIDSIZE; column++)
-                if (canPutDown(GameController.gridManager.grids, row, column)) pass = false;
+                if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column)) pass = false;
         }
 
         return pass;
