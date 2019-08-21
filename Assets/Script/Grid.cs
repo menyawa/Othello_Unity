@@ -51,7 +51,7 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         GameController.playerIsPlaced = true;
     }
 
-    //盤面の置かれている石を更新する関数
+    //シーンの盤面に置かれている石を更新する関数
     public void updateStones() {
         //グリッドのデータと同じ場合更新は必要ないので戻る
         if (_placedStoneNumber == GameController.gridManager.gridStoneNumbers[_row, _column])

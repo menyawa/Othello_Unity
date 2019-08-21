@@ -30,15 +30,17 @@ public class CPUManager : MonoBehaviour
         GameController.playerIsPlaced = false;
     }
 
-    //次の手を考える関数
+    /// <summary>
+    /// CPU用に、次の手を考える
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="column"></param>
     public void nextHand(out int row, out int column) {
         //FIXME:マスごとの評価値(もっといい言い方があるかも？)
         int[,] predictionGridNumbers = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
         int[,] scoreOfGrid = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
-        string hand;
         int maxScore;
-        int rowOfMaxScore;
-        int columnOfMaxScore;
+        int rowOfMaxScore, columnOfMaxScore;
 
         //それぞれのマスの評価値を計算する処理
         for (row = 0; row < GridManager.GRIDSIZE; row++) {
@@ -59,53 +61,54 @@ public class CPUManager : MonoBehaviour
                 scoreOfGrid[row, column] += fixScore(row, column);
 
                 //そこに打ったと仮定して、予想盤面を更新
-                predictionGridNumbers = nextGrid(predictionGridNumbers, row, column);
-                //ここから最大1000手先までを予測、評価値を足すor引く
-                for (int i = 0; i < NUMBEROFSEARCHING; i++) {
+                predictionGridNumbers = GameController.gridManager._nextGrid.nextGrid(predictionGridNumbers, row, column);
+
+                //ここから最大1000手先までを予測、手番によって、評価値を足すor引く
+                for (int searchCount = 0; searchCount < NUMBEROFSEARCHING; searchCount++) {
+                    //既にCPUが打てることは決定されているので、パスカウントをリセットしても決着が伸びる心配はない
                     GameController.gridManager._judgeCheckMate.passCount = 0;
                     if (GameController.turnNumber == 0) GameController.turnNumber = 1;
                     else GameController.turnNumber = 0;
 
-                    //次は敵の手番のため、引く
-                    maxScore = searchMaxScore(copyGrid, out rowOfMaxScore, out columnOfMaxScore);
+                    //次は敵の手番のため、その盤面で最大の評価値を求め、引く
+                    maxScore = searchMaxScore(predictionGridNumbers, out rowOfMaxScore, out columnOfMaxScore);
                     if (maxScore != -1024) {
                         scoreOfGrid[row, column] -= maxScore;
-                        hand = shapingNumber(rowOfMaxScore, columnOfMaxScore);
-                        copyGrid = nextGrid(copyGrid, hand);
+                        predictionGridNumbers = GameController.gridManager._nextGrid.nextGrid(predictionGridNumbers, rowOfMaxScore, columnOfMaxScore);
 
-                        //端の場合引く
+                        //予測した手が端の場合、追加で評価値を引く
                         scoreOfGrid[row, column] -= fixScore(rowOfMaxScore, columnOfMaxScore);
-                    } else
-                        GameController.passCount++;
+                    } else {
+                        GameController.gridManager._judgeCheckMate.passCount++;
+                    }    
 
                     if (GameController.turnNumber == 0) GameController.turnNumber = 1;
                     else GameController.turnNumber = 0;
 
-                    maxScore = searchMaxScore(copyGrid, out rowOfMaxScore, out columnOfMaxScore);
-                    //その次の自分の手番のため、足す
+                    //その次の自分の手番のため、同じく最大の評価値を求め足す
+                    maxScore = searchMaxScore(predictionGridNumbers, out rowOfMaxScore, out columnOfMaxScore);
                     if (maxScore != -1024) {
                         scoreOfGrid[row, column] += maxScore;
-                        hand = shapingNumber(rowOfMaxScore, columnOfMaxScore);
-                        copyGrid = nextGrid(copyGrid, hand);
+                        predictionGridNumbers = GameController.gridManager._nextGrid.nextGrid(predictionGridNumbers, rowOfMaxScore, columnOfMaxScore);
 
                         scoreOfGrid[row, column] += fixScore(rowOfMaxScore, columnOfMaxScore);
-                    } else
-                        GameController.passCount++;
+                    } else {
+                        GameController.gridManager._judgeCheckMate.passCount++;
+                    }
 
-                    //2回打てなかった場合、もう探索は意味なし
-                    if (GameController.passCount == 2) break;
+                    //2回打てなかった場合、もう探索は意味なしなので抜ける
+                    if (GameController.gridManager._judgeCheckMate.judgeCheckmate()) break;
                 }
 
             }
         }
 
-        //最高の評価値のマスの行、列を探索する処理
-        //FIXME:これをsearchMaxScoreに統合しようとしたところ、打てないところに打つバグが出たため冗長だが暫定的にここに置いている
+        //上で求めた評価値の配列から、最高の評価値のマスの行、列を探索する処理
         maxScore = scoreOfGrid[0, 0];
         rowOfMaxScore = 0;
         columnOfMaxScore = 0;
-        for (int row = 0; row < GridManager.GRIDSIZE; row++) {
-            for (int column = 0; column < GridManager.GRIDSIZE; column++) {
+        for (row = 0; row < GridManager.GRIDSIZE; row++) {
+            for (column = 0; column < GridManager.GRIDSIZE; column++) {
                 if (maxScore < scoreOfGrid[row, column]) {
                     maxScore = scoreOfGrid[row, column];
                     rowOfMaxScore = row;
@@ -113,6 +116,10 @@ public class CPUManager : MonoBehaviour
                 }
             }
         }
+
+        //最終的に、一番評価値が高かったマスの行、列番号を返す
+        row = rowOfMaxScore;
+        column = columnOfMaxScore;
     }
 
     //四隅の場合、評価値を足す(あるいは引く)関数

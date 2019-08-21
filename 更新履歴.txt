@@ -1,6 +1,7 @@
 2019/08/22
 SquareをGridに再度リネーム
 GridDataを削除
+nextHandをエラーが出ない形に修正
 
 nextGrid, reverseをまとめて分離
 
