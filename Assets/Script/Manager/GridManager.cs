@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     public const int GRIDSIZE = 8;
     public int[,] gridStoneNumbers = new int[GRIDSIZE, GRIDSIZE];
 
+    public NextGrid _nextGrid;
     public JudgeCanPutDown _judgeCanPutDown;
     public JudgeCheckMate _judgeCheckMate;
 
@@ -28,6 +29,7 @@ public class GridManager : MonoBehaviour
 
     public void initGridManager() {
         initGrids();
+        _nextGrid = new NextGrid();
 
         blackPoint = 2;
         whitePoint = 2;

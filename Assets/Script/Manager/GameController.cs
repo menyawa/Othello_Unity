@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour {
             //CPUは一瞬で打ち終わるため、ログの描写は一回でOK
             uiManager._log.overWriteLogText();
 
+            gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
+
             if (gridManager._judgeCheckMate.checkmate) {
                 clear.clearProgress();
             }

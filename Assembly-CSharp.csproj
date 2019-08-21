@@ -76,7 +76,7 @@
     <Compile Include="Assets\Script\Manager\GameController.cs" />
     <Compile Include="Assets\Script\Manager\GridManager.cs" />
     <Compile Include="Assets\Script\Manager\UIManager.cs" />
-    <Compile Include="Assets\Script\Process.cs" />
+    <Compile Include="Assets\Script\NextGrid.cs" />
     <Compile Include="Assets\Script\Square.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\UI\Base\ButtonBase.cs" />

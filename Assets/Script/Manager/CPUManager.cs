@@ -1,22 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CPUManager : MonoBehaviour
 {
     public const int NUMBEROFSEARCHING = 1000;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     //CPU側の処理手順を示した関数
     public void cpuProcess() {
@@ -27,11 +16,12 @@ public class CPUManager : MonoBehaviour
             GameController.uiManager._log.plusLog("CPU", true);
             GameController.gridManager._judgeCheckMate.passCount++;
         } else {
-            string hand = nextHand();
-            GameController.gridManager.gridStoneNumbers = Process.nextGrid(hand);
+            int stoneNumber = GameController.turnNumber + 1;
+            int row, column;
+            nextHand(out row, out column);
 
             //ログを送信
-            GameController.uiManager._log.plusLog("CPU", false, );
+            GameController.uiManager._log.plusLog("CPU", false, row, column);
         }
 
         if (GameController.turnNumber == 0) GameController.turnNumber = 1;
@@ -41,32 +31,36 @@ public class CPUManager : MonoBehaviour
     }
 
     //次の手を考える関数
-    public static string nextHand(int[,] grids) {
+    public void nextHand(out int row, out int column) {
         //FIXME:マスごとの評価値(もっといい言い方があるかも？)
+        int[,] predictionGridNumbers = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
         int[,] scoreOfGrid = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
         string hand;
         int maxScore;
         int rowOfMaxScore;
         int columnOfMaxScore;
+
         //それぞれのマスの評価値を計算する処理
-        for (int row = 0; row < GridManager.GRIDSIZE; row++) {
-            for (int column = 0; column < GridManager.GRIDSIZE; column++) {
-                //そもそも置けない場合、それ以上やっても意味はないので次へ
-                if (!GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column)) {
+        for (row = 0; row < GridManager.GRIDSIZE; row++) {
+            for (column = 0; column < GridManager.GRIDSIZE; column++) {
+                //予想盤面をここで初期化する
+                Array.Copy(GameController.gridManager.gridStoneNumbers, predictionGridNumbers, GridManager.GRIDSIZE * GridManager.GRIDSIZE);
+
+                //そもそも置けない場合、それ以上やっても意味はないので次のマスへ
+                if (!GameController.gridManager._judgeCanPutDown.canPutDown(predictionGridNumbers, row, column)) {
                     //どんな評価値が出てもこれを下回らないようにする(置けないマスが選ばれてはだめなので)
                     scoreOfGrid[row, column] = -1024;
                     continue;
                 }
                 //一旦そのマスの評価値を計算
-                scoreOfGrid[row, column] = calculateScoreOfGrid(grids, row, column);
+                scoreOfGrid[row, column] = calculateScoreOfGrid(predictionGridNumbers, row, column);
 
                 //端だった場合、評価値を加算
-                scoreOfGrid[row, column] += plusOrMinusScore(row, column);
-                //打たれたと仮定し、盤面(のコピー)を更新
-                int[,] copyGrid = Process.copyArray(grids);
-                hand = Process.shapingNumber(row, column);
-                copyGrid = nextGrid(copyGrid, hand);
-                //ここから数手先までを予測、評価値を足すor引く
+                scoreOfGrid[row, column] += fixScore(row, column);
+
+                //そこに打ったと仮定して、予想盤面を更新
+                predictionGridNumbers = nextGrid(predictionGridNumbers, row, column);
+                //ここから最大1000手先までを予測、評価値を足すor引く
                 for (int i = 0; i < NUMBEROFSEARCHING; i++) {
                     GameController.gridManager._judgeCheckMate.passCount = 0;
                     if (GameController.turnNumber == 0) GameController.turnNumber = 1;
@@ -80,7 +74,7 @@ public class CPUManager : MonoBehaviour
                         copyGrid = nextGrid(copyGrid, hand);
 
                         //端の場合引く
-                        scoreOfGrid[row, column] -= plusOrMinusScore(rowOfMaxScore, columnOfMaxScore);
+                        scoreOfGrid[row, column] -= fixScore(rowOfMaxScore, columnOfMaxScore);
                     } else
                         GameController.passCount++;
 
@@ -94,7 +88,7 @@ public class CPUManager : MonoBehaviour
                         hand = shapingNumber(rowOfMaxScore, columnOfMaxScore);
                         copyGrid = nextGrid(copyGrid, hand);
 
-                        scoreOfGrid[row, column] += plusOrMinusScore(rowOfMaxScore, columnOfMaxScore);
+                        scoreOfGrid[row, column] += fixScore(rowOfMaxScore, columnOfMaxScore);
                     } else
                         GameController.passCount++;
 
@@ -119,41 +113,10 @@ public class CPUManager : MonoBehaviour
                 }
             }
         }
-        hand = shapingNumber(rowOfMaxScore, columnOfMaxScore);
-        return hand;
-    }
-
-    //次の手を打ったあとの盤面状態を返却する関数
-    public static int[,] nextGrid(int[,] grids, string nextHand) {
-        int row;
-        int column;
-        shapingStr(nextHand, out row, out column);
-        int stone = GameController.turnNumber + 1;
-        grids[row, column] = stone;
-
-        //ここからひっくり返す処理
-        if (canPutDown(grids, row, column, 1, 0))
-            grids = reverse(grids, row, column, 1, 0);// 右
-        if (canPutDown(grids, row, column, 0, 1))
-            grids = reverse(grids, row, column, 0, 1); // 下
-        if (canPutDown(grids, row, column, -1, 0))
-            grids = reverse(grids, row, column, -1, 0); // 左
-        if (canPutDown(grids, row, column, 0, -1))
-            grids = reverse(grids, row, column, 0, -1); // 上
-        if (canPutDown(grids, row, column, 1, 1))
-            grids = reverse(grids, row, column, 1, 1); // 右下
-        if (canPutDown(grids, row, column, -1, -1))
-            grids = reverse(grids, row, column, -1, -1); // 左上
-        if (canPutDown(grids, row, column, 1, -1))
-            grids = reverse(grids, row, column, 1, -1); // 右上
-        if (canPutDown(grids, row, column, -1, 1))
-            grids = reverse(grids, row, column, -1, 1); // 左下
-
-        return grids;
     }
 
     //四隅の場合、評価値を足す(あるいは引く)関数
-    public static int plusOrMinusScore(int row, int column) {
+    public static int fixScore(int row, int column) {
         int score = 0;
         if (row == 0 || row == 7) score += 5;
         if (column == 0 || column == 7) score += 5;
@@ -161,27 +124,27 @@ public class CPUManager : MonoBehaviour
     }
 
     //指定されたマスの評価値を計算する関数(その盤面のみ対象)
-    public int calculateScoreOfGrid(GridData[,] grids, int row, int column) {
+    public int calculateScoreOfGrid(int[,] gridNumbers, int row, int column) {
         int score = 0;
-        if (!GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column))
+        if (!GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column))
             return -1024;
 
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, 1, 0))
-            score += checkScoreInDirection(grids, row, column, 1, 0); // 右
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, 0, 1))
-            score += checkScoreInDirection(grids, row, column, 0, 1); // 下
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, -1, 0))
-            score += checkScoreInDirection(grids, row, column, -1, 0); // 左
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, 0, -1))
-            score += checkScoreInDirection(grids, row, column, 0, -1); // 上
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, 1, 1))
-            score += checkScoreInDirection(grids, row, column, 1, 1); // 右下
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, -1, -1))
-            score += checkScoreInDirection(grids, row, column, -1, -1); // 左上
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, 1, -1))
-            score += checkScoreInDirection(grids, row, column, 1, -1); // 右上
-        if (GameController.gridManager._judgeCanPutDown.canPutDown(grids, row, column, -1, 1))
-            score += checkScoreInDirection(grids, row, column, -1, 1); // 左下
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
+            score += checkScoreInDirection(gridNumbers, row, column, 1, 0); // 右
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, 1))
+            score += checkScoreInDirection(gridNumbers, row, column, 0, 1); // 下
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 0))
+            score += checkScoreInDirection(gridNumbers, row, column, -1, 0); // 左
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, -1))
+            score += checkScoreInDirection(gridNumbers, row, column, 0, -1); // 上
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 1))
+            score += checkScoreInDirection(gridNumbers, row, column, 1, 1); // 右下
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, -1))
+            score += checkScoreInDirection(gridNumbers, row, column, -1, -1); // 左上
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, -1))
+            score += checkScoreInDirection(gridNumbers, row, column, 1, -1); // 右上
+        if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, -1, 1))
+            score += checkScoreInDirection(gridNumbers, row, column, -1, 1); // 左下
 
         return score;
     }
@@ -189,7 +152,7 @@ public class CPUManager : MonoBehaviour
     //渡された盤面の最大の評価値、その行番号、列番号を検索する関数(その盤面のみ対象)
     public static int searchMaxScore(int[,] gridNumbers, out int rowOfMaxScore, out int columnOfMaxScore) {
         int[,] scoreOfGrids = gridNumbers;
-        scoreOfGrids = new GridData[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
+        scoreOfGrids = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
         for (int row = 0; row < GridManager.GRIDSIZE; row++) {
             for (int column = 0; column < GridManager.GRIDSIZE; column++)
                 scoreOfGrids[row, column] = calculateScoreOfGrid(gridNumbers, row, column);
@@ -226,22 +189,5 @@ public class CPUManager : MonoBehaviour
         }
 
         return scoreInDirection;
-    }
-
-
-
-    //ひっくり返す関数
-    public static int[,] reverse(int[,] gridNumbers, int row, int column, int vecColumn, int vecRow) {
-        int stone = GameController.turnNumber + 1;
-        row += vecRow;
-        column += vecColumn;
-
-        while (gridNumbers[row, column] != stone) {
-            gridNumbers[row, column] = stone;
-            row += vecRow;
-            column += vecColumn;
-        }
-
-        return gridNumbers;
     }
 }
