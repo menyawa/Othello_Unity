@@ -77,7 +77,6 @@
     <Compile Include="Assets\Script\Manager\GridManager.cs" />
     <Compile Include="Assets\Script\Manager\UIManager.cs" />
     <Compile Include="Assets\Script\NextGrid.cs" />
-    <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\UI\Base\ButtonBase.cs" />
     <Compile Include="Assets\Script\UI\Button\BackTitleButton.cs" />
     <Compile Include="Assets\Script\UI\Button\ContinueButton.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="Assets\Script\UI\Button\SelectTurnNumberButton.cs" />
     <Compile Include="Assets\Script\UI\Button\StartButton.cs" />
     <Compile Include="Assets\Script\UI\Log.cs" />
+    <Compile Include="Assets\Script\UI\Timer.cs" />
     <None Include="Assets\AssetStore\DOTween\readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/ikejun/Documents/Unity/Othello/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CPUManager : MonoBehaviour
+public class CPUManager
 {
     public const int NUMBEROFSEARCHING = 1000;
 

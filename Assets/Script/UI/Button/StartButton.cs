@@ -23,7 +23,8 @@ public class StartButton : ButtonBase
     }
 
     public void openSelectTurnNumberPanel() {
-        _titleMenu.SetActive(false);
+        if(_titleMenu != null)
+            _titleMenu.SetActive(false);
         _turnNumberPanel.SetActive(true);
     }
 }

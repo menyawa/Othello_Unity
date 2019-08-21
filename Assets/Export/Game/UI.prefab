@@ -186,7 +186,7 @@ RectTransform:
   m_GameObject: {fileID: 6261616536849742232}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 6261616537451935238}
   m_RootOrder: 3
@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6261616537131887395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ RectTransform:
   m_GameObject: {fileID: 6261616537131887394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 6261616537451935238}
   m_RootOrder: 1
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 6261616537289050125}
   - component: {fileID: 6261616537289050127}
   - component: {fileID: 6261616537289050126}
-  - component: {fileID: 1050257756506570370}
+  - component: {fileID: 2950617389136792490}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &1050257756506570370
+--- !u!114 &2950617389136792490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1263,7 +1263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6261616537451935238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 6261616537461952697}
   - component: {fileID: 6261616538352945760}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1579,6 +1579,7 @@ GameObject:
   - component: {fileID: 6261616537614138054}
   - component: {fileID: 6261616537614138053}
   - component: {fileID: 6261616537614138052}
+  - component: {fileID: 4064214467406161149}
   m_Layer: 5
   m_Name: Next Button
   m_TagString: Untagged
@@ -1595,7 +1596,7 @@ RectTransform:
   m_GameObject: {fileID: 6261616537614138057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 6261616537463842212}
   m_Father: {fileID: 6261616537451935238}
@@ -1696,6 +1697,22 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &4064214467406161149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6261616537614138057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bb4efbccedc824dbcbcc2c23cfef13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 6261616537614138052}
+  _isPressed: 0
+  _titleMenu: {fileID: 0}
+  _turnNumberPanel: {fileID: 8021769980621068936}
 --- !u!1 &6261616537719465731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,7 +1889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6261616537826050933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1882,7 +1899,7 @@ RectTransform:
   m_GameObject: {fileID: 6261616537826050932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 6261616537451935238}
   m_RootOrder: 2
@@ -2134,6 +2151,7 @@ GameObject:
   - component: {fileID: 6261616537903320703}
   - component: {fileID: 6261616537903320702}
   - component: {fileID: 6261616537903320701}
+  - component: {fileID: 6442319215423257644}
   m_Layer: 5
   m_Name: Back Title Button
   m_TagString: Untagged
@@ -2150,7 +2168,7 @@ RectTransform:
   m_GameObject: {fileID: 6261616537903320643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 6261616536963304971}
   m_Father: {fileID: 6261616537451935238}
@@ -2251,6 +2269,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &6442319215423257644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6261616537903320643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e37bb0ed485ac94798ae115ecff8e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 6261616537903320701}
+  _isPressed: 0
 --- !u!1 &6261616538206459579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,7 +3115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6261616538600084099
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3093,7 +3125,7 @@ RectTransform:
   m_GameObject: {fileID: 6261616538600084098}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 6261616537451935238}
   m_RootOrder: 0
@@ -3351,7 +3383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b911febb9011beb439c6199268ef2718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 8021769979386373884}
+  _button: {fileID: 0}
   _isPressed: 0
   turnNumber: 0
 --- !u!1 &8021769979704132695
@@ -3545,9 +3577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b911febb9011beb439c6199268ef2718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 8021769980342860506}
+  _button: {fileID: 0}
   _isPressed: 0
-  turnNumber: 1
+  turnNumber: 0
 --- !u!1 &8021769980621068936
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
 2019/08/22
+Gameシーンのインスペクタの参照を入れた
+
 SquareをGridに再度リネーム
 GridDataを削除
 nextHandをエラーが出ない形に修正

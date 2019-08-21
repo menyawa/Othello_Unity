@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour {
     private void initGameController() {
         gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-        cpuManager = GameObject.Find("CPUManager").GetComponent<CPUManager>();
+        cpuManager = new CPUManager();
         clear = gameObject.GetComponent<Clear>();
 
         DOTween.Init();
