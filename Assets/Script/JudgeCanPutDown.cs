@@ -2,20 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JudgeCanPutDown : MonoBehaviour
+public class JudgeCanPutDown
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //そこに置いてひっくり返せるのか確認する関数
     //GridManagerに盤面があるのにgridsを入れるわけは、CPUによる予測の際に仮の盤面で使うため
     public bool canPutDown(int[,] gridNumbers, int row, int column) {

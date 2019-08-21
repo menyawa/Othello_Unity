@@ -2,22 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JudgeCheckMate : MonoBehaviour
+public class JudgeCheckMate
 {
     public int passCount { set; get; }
     public bool checkmate;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public JudgeCheckMate() {
         passCount = 0;
         checkmate = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     //勝敗を判断する関数

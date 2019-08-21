@@ -30,6 +30,8 @@ public class GridManager : MonoBehaviour
     public void initGridManager() {
         initGrids();
         _nextGrid = new NextGrid();
+        _judgeCanPutDown = new JudgeCanPutDown();
+        _judgeCheckMate = new JudgeCheckMate();
 
         blackPoint = 2;
         whitePoint = 2;

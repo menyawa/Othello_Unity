@@ -20,6 +20,7 @@ public class CPUManager : MonoBehaviour
             int row, column;
             nextHand(out row, out column);
 
+            GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
             //ログを送信
             GameController.uiManager._log.plusLog("CPU", false, row, column);
         }
@@ -157,22 +158,21 @@ public class CPUManager : MonoBehaviour
     }
 
     //渡された盤面の最大の評価値、その行番号、列番号を検索する関数(その盤面のみ対象)
-    public static int searchMaxScore(int[,] gridNumbers, out int rowOfMaxScore, out int columnOfMaxScore) {
-        int[,] scoreOfGrids = gridNumbers;
-        scoreOfGrids = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
+    public int searchMaxScore(int[,] gridNumbers, out int rowOfMaxScore, out int columnOfMaxScore) {
+        int[,] scoreOfGrid = new int[GridManager.GRIDSIZE, GridManager.GRIDSIZE];
         for (int row = 0; row < GridManager.GRIDSIZE; row++) {
             for (int column = 0; column < GridManager.GRIDSIZE; column++)
-                scoreOfGrids[row, column] = calculateScoreOfGrid(gridNumbers, row, column);
+                scoreOfGrid[row, column] = calculateScoreOfGrid(gridNumbers, row, column);
         }
 
         //最高の評価値のマスを探索する処理
-        int maxScore = scoreOfGrids[0, 0];
+        int maxScore = scoreOfGrid[0, 0];
         rowOfMaxScore = 0;
         columnOfMaxScore = 0;
         for (int row = 0; row < GridManager.GRIDSIZE; row++) {
             for (int column = 0; column < GridManager.GRIDSIZE; column++) {
-                if (maxScore < scoreOfGrids[row, column]) {
-                    maxScore = scoreOfGrids[row, column];
+                if (maxScore < scoreOfGrid[row, column]) {
+                    maxScore = scoreOfGrid[row, column];
                     rowOfMaxScore = row;
                     columnOfMaxScore = column;
                 }
@@ -183,7 +183,7 @@ public class CPUManager : MonoBehaviour
     }
 
     //指定された方向のひっくり返せる個数を調べる関数
-    public static int checkScoreInDirection(int[,] gridNumbers, int row, int column, int vecColumn, int vecRow) {
+    public int checkScoreInDirection(int[,] gridNumbers, int row, int column, int vecColumn, int vecRow) {
         int stone = GameController.turnNumber + 1;
         int scoreInDirection = 0;
         row += vecRow;

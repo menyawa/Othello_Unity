@@ -2,6 +2,8 @@
 SquareをGridに再度リネーム
 GridDataを削除
 nextHandをエラーが出ない形に修正
+評価値周りをエラーが出ないよう微修正
+コンポーネントにする必要が無いフィールドを、インスタンス化
 
 nextGrid, reverseをまとめて分離
 
