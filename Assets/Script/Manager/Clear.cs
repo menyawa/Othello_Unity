@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Clear : MonoBehaviour
 {
-    [SerializeField] private GameObject clearMenu;
-    [SerializeField] private GameObject playerWinObject;
-    [SerializeField] private GameObject computerWinObject;
-    [SerializeField] private GameObject DrawObject;
+    public RectTransform[] clearMenuUIsRectTrans;
+
+    [SerializeField] private RectTransform winTextRectTrans;
+    [SerializeField] private RectTransform loseTextRectTrans;
+    [SerializeField] private RectTransform drawTextRectTrans;
 
     [SerializeField] private Text pointText;
     
@@ -27,34 +29,45 @@ public class Clear : MonoBehaviour
 
     public void clearProgress()
     {
-        clearMenu.SetActive(true);
-        pointText.text = "Point:";
+        RectTransform winnerTextRectTrans = judgeWinner();
+        int winnerPoint = calculateWinnerPoint();
+        pointText.text = "Point:" + winnerPoint.ToString();
 
-        if (blackCount > whiteCount)
-        { 
-            if(GameController.playerIsBlack)
-                playerWinObject.SetActive(true);
-            else
-                computerWinObject.SetActive(true);
-
-            pointText.text += (blackCount - whiteCount).ToString();
+        //上から順番にクリア時のUIを出していく
+        //勝敗のテキストはどれになるかがわからないため、ここで最初に代入する
+        clearMenuUIsRectTrans[1] = winnerTextRectTrans;
+        Sequence clearMenuSeq = DOTween.Sequence();
+        float waitSecond = 1.0f;
+        for (int index = 0; index < clearMenuUIsRectTrans.Length; index++) {
+            clearMenuSeq.Append(clearMenuUIsRectTrans[index].DOScale(UIManager.DEFAULTSCALE, waitSecond).SetEase(Ease.InOutElastic));
         }
-        else if(blackCount < whiteCount)
-        {
-            if(!GameController.playerIsBlack)
-                playerWinObject.SetActive(true);
-            else
-                computerWinObject.SetActive(true);
-            
-            pointText.text += (whiteCount - blackCount).ToString();
-        }
-        else
-        {
-            pointText.text = "0";
-            DrawObject.SetActive(true);
-        }
-            
     }
 
-    
+    public RectTransform judgeWinner() {
+        RectTransform winnerTextRectTrans = null;
+
+        if (GameController.gridManager.blackPoint > GameController.gridManager.whitePoint) {
+            winnerTextRectTrans = GameController.playerIsBlack ? winTextRectTrans : loseTextRectTrans;
+        } else if (GameController.gridManager.whitePoint > GameController.gridManager.blackPoint) {
+            winnerTextRectTrans = GameController.playerIsBlack ? loseTextRectTrans : winTextRectTrans;
+        } else {
+            winnerTextRectTrans = drawTextRectTrans;
+        }
+
+        return winnerTextRectTrans;
+    }
+
+    /// <summary>
+    /// 勝った方のポイントを計算する関数
+    /// </summary>
+    /// <returns></returns>
+    public int calculateWinnerPoint() {
+        int blackWinnerPoint = GameController.gridManager.blackPoint - GameController.gridManager.whitePoint;
+        int whiteWinnerPoint = GameController.gridManager.whitePoint - GameController.gridManager.blackPoint;
+
+        //引き分けの場合、どちらも0になるため専用の条件分岐は考えなくても良い
+        int point = GameController.gridManager.blackPoint > GameController.gridManager.whitePoint ? blackWinnerPoint : whiteWinnerPoint;
+
+        return point;
+    }
 }

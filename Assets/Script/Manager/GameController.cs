@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class GameController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Awake () {
-        initManagers();
+        initGameController();
 
         //プレイヤーが後手の場合、まずコンピューターに打たせる
         //FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
@@ -60,10 +61,12 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-    private void initManagers() {
+    private void initGameController() {
         gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         cpuManager = GameObject.Find("CPUManager").GetComponent<CPUManager>();
         clear = gameObject.GetComponent<Clear>();
+
+        DOTween.Init();
     }
 }

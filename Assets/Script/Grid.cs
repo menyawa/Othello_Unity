@@ -43,8 +43,10 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         //置けない場合、もう置いた場合は無効
         if (!GameController.gridManager._judgeCanPutDown.canPutDown(_row, _column) || GameController.playerIsPlaced)
             return;
-        
-        //盤面に打つ処理を書く
+
+        //盤面に打つ
+        int stoneNumber = GameController.turnNumber + 1;
+        nowStone = stoneNumber;
 
         //ログを送信
         string hand = Process.shapingNumber(_row, _column);

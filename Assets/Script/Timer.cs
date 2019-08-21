@@ -24,19 +24,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
         countTime();
+        overwriteTime();
     }
 
     private void countTime() {
-        if (GameController.playerIsBlack) {
-            if (playerTimeForSecond > 0) {
-                playerTimeForSecond -= Time.deltaTime;
-            } else {
-                if (playerTimeForMinutes > 0) {
-                    playerTimeForMinutes--;
-                    playerTimeForSecond += 60;
-                }
-            }
-        } else {
+        if (GameController.playerIsPlaced) {
             if (computerTimeForSecond > 0) {
                 playerTimeForSecond -= Time.deltaTime;
             } else {
@@ -45,6 +37,20 @@ public class Timer : MonoBehaviour
                     playerTimeForSecond += 60;
                 }
             }
+        } else {
+            if (playerTimeForSecond > 0) {
+                playerTimeForSecond -= Time.deltaTime;
+            } else {
+                if (playerTimeForMinutes > 0) {
+                    playerTimeForMinutes--;
+                    playerTimeForSecond += 60;
+                }
+            }
         }
+    }
+
+    private void overwriteTime() {
+        playerTimerText.text = "Player:" + playerTimeForMinutes + ":" + playerTimeForMinutes;
+        computerTimerText.text = "CPU:" + computerTimeForMinutes + ":" + computerTimeForMinutes;
     }
 }

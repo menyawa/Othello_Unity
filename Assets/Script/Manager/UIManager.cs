@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
     public Log _log;
     public Timer _timer;
 
+    public static Vector3 DEFAULTSCALE = new Vector3(1f, 1f, 1f);
+
     // Start is called before the first frame update
     void Start()
     {
