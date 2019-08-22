@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Grid : MonoBehaviour, IPointerClickHandler
 {
@@ -11,9 +12,15 @@ public class Grid : MonoBehaviour, IPointerClickHandler
 
     public int _placedStoneNumber;
     public GameObject _placedStoneObject;
+    public Transform _placedStoneTransform;
+
+    public bool _rotateComplete;
+    public static Vector3 _rotateLength = new Vector3(0, 0, 180);
+    public static float _rotateSecond = 0.5f;
 
     // Start is called before the first frame update
     void Start() {
+        _rotateComplete = true;
         _placedStoneNumber = 0;
         _position = gameObject.transform.position;
         _position.y += 0.1f;
@@ -33,14 +40,6 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         if (pointerEventData.pointerId != -1)
             return;
 
-        //Debug.Log("row:" + _row + " " + "column:" + _column);
-        //Debug.Log(GameController.gridManager.gridStoneNumbers[_row, _column]);
-        //Debug.Log(GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column));
-        //Debug.Log(GameController.playerIsPlaced);
-
-        //Debug.Log("Before");
-        //printDebugGrids();
-
         //置けない場合、もう置いた場合はダメ
         if (!GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column) || GameController.playerIsPlaced)
             return;
@@ -52,9 +51,6 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         GameController.uiManager._point.printPoint();
         GameController.uiManager._log.plusLog("じぶん", false, _row, _column);
         GameController.playerIsPlaced = true;
-
-        //Debug.Log("After");
-        //printDebugGrids();
     }
 
     //シーンの盤面に置かれている石を更新する関数
@@ -63,21 +59,30 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         if (_placedStoneNumber == GameController.gridManager.gridStoneNumbers[_row, _column])
             return;
 
+        //回転処理が完了していなかったら戻る
+        if (!_rotateComplete) return;
+
+        _rotateComplete = false;
         //石が置かれてなかったところに石が置かれた場合、石を生成
         if (_placedStoneNumber == 0) {
             _placedStoneObject = Instantiate(GameController.gridManager._stonePrefab, _position, Quaternion.identity);
+            //回す時用にRectTransfromを取得
+            _placedStoneTransform = _placedStoneObject.transform;
 
             //デフォルトが黒が上なので、白の場合半回転させる
             if (GameController.gridManager.gridStoneNumbers[_row, _column] == 2) {
-                _placedStoneObject.transform.Rotate(0, 0, 180);
+                //_placedStoneObject.transform.Rotate(_rotateLength);
+                _placedStoneTransform.DORotate(_rotateLength, _rotateSecond);
             }
         } else {
             //もともと石が置かれていて石の更新があった場合、半回転させる
-            _placedStoneObject.transform.Rotate(0, 0, 180);
+            //_placedStoneObject.transform.Rotate(_rotateLength);
+            _placedStoneTransform.DORotate(_rotateLength, _rotateSecond);
         }
 
         //置かれている石が何色かを更新
         _placedStoneNumber = GameController.gridManager.gridStoneNumbers[_row, _column];
+        _rotateComplete = true;
     }
 
     /// <summary>
