@@ -20,7 +20,7 @@ public class CPUManager
             int row, column;
             nextHand(out row, out column);
 
-            GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
+            GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
             //ログを送信
             GameController.uiManager._log.plusLog("てき", false, row, column);
         }
@@ -32,6 +32,8 @@ public class CPUManager
         GameController.uiManager._point.printPoint();
 
         GameController.playerIsPlaced = false;
+
+        Grid.printDebugGrids();
     }
 
     /// <summary>

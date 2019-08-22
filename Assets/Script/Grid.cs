@@ -12,10 +12,6 @@ public class Grid : MonoBehaviour, IPointerClickHandler
     public int _placedStoneNumber;
     public GameObject _placedStoneObject;
 
-    void Awake() {
-
-    }
-
     // Start is called before the first frame update
     void Start() {
         _placedStoneNumber = 0;
@@ -93,7 +89,6 @@ public class Grid : MonoBehaviour, IPointerClickHandler
             for (int column = 0; column < GridManager.GRIDSIZE; column++) {
                 text += GameController.gridManager.gridStoneNumbers[row, column] + " ";
             }
-            Debug.Log(text);
         }
     }
 }

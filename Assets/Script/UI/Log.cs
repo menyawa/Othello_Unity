@@ -6,20 +6,15 @@ using UnityEngine.UI;
 
 public class Log : MonoBehaviour
 {
-    private string _log;
+    //ここで初期化することで、後手の場合のCPUのログ表示にも間に合わせる
+    private string _log = "";
 	
 	[SerializeField] private ScrollRect _scrollRect;
 	[SerializeField] private Text _text;
-    
-	// Use this for initialization
-	void Start ()
-	{
-		//タイトル画面のログも拾ってきてしまうため初期化
-		_log = "";
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+
+    // Update is called once per frame
+    void Update ()
 	{
 	}
 
@@ -31,7 +26,7 @@ public class Log : MonoBehaviour
 		_log += text + "\n";
 	}
 
-    public void overWriteLogText() {
+    public void printLog() {
         _text.text = _log;
         //テキストを更新したあと、一番下まで送る
         _scrollRect.verticalNormalizedPosition = 0;

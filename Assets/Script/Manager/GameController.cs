@@ -19,14 +19,12 @@ public class GameController : MonoBehaviour {
         gridManager.initGridManager();
 
         //プレイヤーが後手の場合、まずコンピューターに打たせる
-        //FIXME:ゲーム画面で選ばせた場合、Startのタイミングで打たせることができない
-        //なので、今の所先手しか選べない(0で初期化しているのはそれが理由)
         playerIsBlack = true;
         if (turnNumber == 1)
 		{
 			playerIsBlack = false;
 			cpuManager.cpuProcess();
-		}	
+        }	
 	}
 
     void Start() {
@@ -57,7 +55,7 @@ public class GameController : MonoBehaviour {
             }
 
             //CPUは一瞬で打ち終わるため、ログの描写は一回でOK
-            uiManager._log.overWriteLogText();
+            uiManager._log.printLog();
 
             gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
 
