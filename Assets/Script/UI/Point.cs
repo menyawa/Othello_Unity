@@ -42,7 +42,7 @@ public class Point : MonoBehaviour
     }
 
     public void printPoint() {
-        blackPointText.text = "Black" + " " + blackPoint.ToString();
-        whitePointText.text = "White" + " " +  whitePoint.ToString();
+        blackPointText.text = "くろ" + " " + blackPoint.ToString();
+        whitePointText.text = "しろ" + " " +  whitePoint.ToString();
     }
 }

@@ -28,8 +28,8 @@ public class CPUManager
         if (GameController.turnNumber == 0) GameController.turnNumber = 1;
         else GameController.turnNumber = 0;
 
-        GameController.gridManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
-        GameController.gridManager._point.printPoint();
+        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+        GameController.uiManager._point.printPoint();
 
         GameController.playerIsPlaced = false;
     }

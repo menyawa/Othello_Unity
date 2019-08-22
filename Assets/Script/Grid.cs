@@ -52,9 +52,9 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         //盤面に打つ
         GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, _row, _column);
 
+        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+        GameController.uiManager._point.printPoint();
         GameController.uiManager._log.plusLog("Player", false, _row, _column);
-        GameController.gridManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
-        GameController.gridManager._point.printPoint();
         GameController.playerIsPlaced = true;
 
         //Debug.Log("After");

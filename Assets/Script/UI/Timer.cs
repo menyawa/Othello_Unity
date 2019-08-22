@@ -50,7 +50,7 @@ public class Timer : MonoBehaviour
     }
 
     private void overwriteTime() {
-        playerTimerText.text = "Player:" + playerTimeForMinutes + ":" + playerTimeForMinutes;
-        computerTimerText.text = "CPU:" + computerTimeForMinutes + ":" + computerTimeForMinutes;
+        playerTimerText.text = "じぶん" + playerTimeForMinutes + " " + playerTimeForMinutes;
+        computerTimerText.text = "てき" + computerTimeForMinutes + " " + computerTimeForMinutes;
     }
 }

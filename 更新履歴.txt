@@ -1,4 +1,7 @@
 2019/08/22
+UIManagerにPointを移行
+Timer, Point, Logの内容を微修正、フォントを変更
+
 Gameの解像度を1920×1080に変更
 RowText, ColumnTextのフォントを変更
 位置を調整

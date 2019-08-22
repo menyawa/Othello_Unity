@@ -11,7 +11,6 @@ public class GridManager : MonoBehaviour
 
     public NextGrid _nextGrid;
     public JudgeCanPutDown _judgeCanPutDown;
-    public Point _point;
     public JudgeCheckMate _judgeCheckMate;
 
     // Start is called before the first frame update

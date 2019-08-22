@@ -47,11 +47,11 @@ public class Clear : MonoBehaviour
         RectTransform winnerTextRectTrans = null;
 
         //念の為、ポイントを最新にしておく
-        GameController.gridManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
 
-        if (GameController.gridManager._point.blackPoint > GameController.gridManager._point.whitePoint) {
+        if (GameController.uiManager._point.blackPoint > GameController.uiManager._point.whitePoint) {
             winnerTextRectTrans = GameController.playerIsBlack ? winTextRectTrans : loseTextRectTrans;
-        } else if (GameController.gridManager._point.whitePoint > GameController.gridManager._point.blackPoint) {
+        } else if (GameController.uiManager._point.whitePoint > GameController.uiManager._point.blackPoint) {
             winnerTextRectTrans = GameController.playerIsBlack ? loseTextRectTrans : winTextRectTrans;
         } else {
             winnerTextRectTrans = drawTextRectTrans;
@@ -65,11 +65,11 @@ public class Clear : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public int calculateWinnerPoint() {
-        int blackWinnerPoint = GameController.gridManager._point.blackPoint - GameController.gridManager._point.whitePoint;
-        int whiteWinnerPoint = GameController.gridManager._point.whitePoint - GameController.gridManager._point.blackPoint;
+        int blackWinnerPoint = GameController.uiManager._point.blackPoint - GameController.uiManager._point.whitePoint;
+        int whiteWinnerPoint = GameController.uiManager._point.whitePoint - GameController.uiManager._point.blackPoint;
 
         //引き分けの場合、どちらも0になるため専用の条件分岐は考えなくても良い
-        int point = GameController.gridManager._point.blackPoint > GameController.gridManager._point.whitePoint ? blackWinnerPoint : whiteWinnerPoint;
+        int point = GameController.uiManager._point.blackPoint > GameController.uiManager._point.whitePoint ? blackWinnerPoint : whiteWinnerPoint;
 
         return point;
     }
