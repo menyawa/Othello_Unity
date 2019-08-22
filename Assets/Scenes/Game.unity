@@ -599,10 +599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382c3b4cdf4940f41969ff91cc247ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackPoint: 0
-  whitePoint: 0
   _stonePrefab: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a,
     type: 3}
+  _point: {fileID: 0}
 --- !u!1001 &357593267244362100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -804,20 +803,15 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6261616537036578869, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
+    - target: {fileID: 6261616538562942393, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
-    - target: {fileID: 6261616537036578869, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
+    - target: {fileID: 4403875706959741508, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6261616537036578869, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
+      propertyPath: m_AnchoredPosition.y
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df, type: 3}

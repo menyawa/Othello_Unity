@@ -84,6 +84,7 @@
     <Compile Include="Assets\Script\UI\Button\SelectTurnNumberButton.cs" />
     <Compile Include="Assets\Script\UI\Button\StartButton.cs" />
     <Compile Include="Assets\Script\UI\Log.cs" />
+    <Compile Include="Assets\Script\UI\Point.cs" />
     <Compile Include="Assets\Script\UI\Timer.cs" />
     <None Include="Assets\AssetStore\DOTween\readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">

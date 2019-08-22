@@ -46,9 +46,12 @@ public class Clear : MonoBehaviour
     public RectTransform judgeWinner() {
         RectTransform winnerTextRectTrans = null;
 
-        if (GameController.gridManager.blackPoint > GameController.gridManager.whitePoint) {
+        //念の為、ポイントを最新にしておく
+        GameController.gridManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+
+        if (GameController.gridManager._point.blackPoint > GameController.gridManager._point.whitePoint) {
             winnerTextRectTrans = GameController.playerIsBlack ? winTextRectTrans : loseTextRectTrans;
-        } else if (GameController.gridManager.whitePoint > GameController.gridManager.blackPoint) {
+        } else if (GameController.gridManager._point.whitePoint > GameController.gridManager._point.blackPoint) {
             winnerTextRectTrans = GameController.playerIsBlack ? loseTextRectTrans : winTextRectTrans;
         } else {
             winnerTextRectTrans = drawTextRectTrans;
@@ -62,11 +65,11 @@ public class Clear : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public int calculateWinnerPoint() {
-        int blackWinnerPoint = GameController.gridManager.blackPoint - GameController.gridManager.whitePoint;
-        int whiteWinnerPoint = GameController.gridManager.whitePoint - GameController.gridManager.blackPoint;
+        int blackWinnerPoint = GameController.gridManager._point.blackPoint - GameController.gridManager._point.whitePoint;
+        int whiteWinnerPoint = GameController.gridManager._point.whitePoint - GameController.gridManager._point.blackPoint;
 
         //引き分けの場合、どちらも0になるため専用の条件分岐は考えなくても良い
-        int point = GameController.gridManager.blackPoint > GameController.gridManager.whitePoint ? blackWinnerPoint : whiteWinnerPoint;
+        int point = GameController.gridManager._point.blackPoint > GameController.gridManager._point.whitePoint ? blackWinnerPoint : whiteWinnerPoint;
 
         return point;
     }
