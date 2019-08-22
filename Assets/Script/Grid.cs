@@ -60,10 +60,6 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         if (_placedStoneNumber == GameController.gridManager.gridStoneNumbers[_row, _column])
             return;
 
-        if(_row == 3 && _column == 3) {
-            Debug.Log("called");
-        }
-
         //回転処理が完了していなかったら戻る
         if (!_rotateComplete) return;
 

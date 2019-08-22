@@ -25,8 +25,10 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countTime();
-        overwriteTime();
+        if (!GameController.gridManager._judgeCheckMate.checkmate) {
+            countTime();
+            overwriteTime();
+        }
     }
 
     private void countTime() {
