@@ -18,6 +18,8 @@ public class Timer : MonoBehaviour
     {
         playerTimeForMinutes = 10;
         computerTimeForMinutes = 10;
+        playerTimeForSecond = 0;
+        computerTimeForSecond = 0;
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class Timer : MonoBehaviour
     }
 
     private void overwriteTime() {
-        playerTimerText.text = "じぶん " + playerTimeForMinutes + ":" + playerTimeForMinutes;
-        computerTimerText.text = "てき " + computerTimeForMinutes + ":" + computerTimeForMinutes;
+        playerTimerText.text = "じぶん " + playerTimeForMinutes + ":" + (int)playerTimeForSecond;
+        computerTimerText.text = "てき   " + computerTimeForMinutes + ":" + (int)computerTimeForSecond;
     }
 }

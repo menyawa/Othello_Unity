@@ -39,11 +39,11 @@ public class Grid : MonoBehaviour, IPointerClickHandler
 
         //Debug.Log("row:" + _row + " " + "column:" + _column);
         //Debug.Log(GameController.gridManager.gridStoneNumbers[_row, _column]);
-        Debug.Log(GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column));
-        Debug.Log(GameController.playerIsPlaced);
+        //Debug.Log(GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column));
+        //Debug.Log(GameController.playerIsPlaced);
 
-        Debug.Log("Before");
-        printDebugGrids();
+        //Debug.Log("Before");
+        //printDebugGrids();
 
         //置けない場合、もう置いた場合はダメ
         if (!GameController.gridManager._judgeCanPutDown.canPutDown(GameController.gridManager.gridStoneNumbers, _row, _column) || GameController.playerIsPlaced)
@@ -57,8 +57,8 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         GameController.uiManager._log.plusLog("じぶん", false, _row, _column);
         GameController.playerIsPlaced = true;
 
-        Debug.Log("After");
-        printDebugGrids();
+        //Debug.Log("After");
+        //printDebugGrids();
     }
 
     //シーンの盤面に置かれている石を更新する関数

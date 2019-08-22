@@ -870,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 6261616537145183849, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
       propertyPath: m_Text
-      value: "\u3066\u304D 10:10"
+      value: "\u3066\u304D\u3000 10:10"
       objectReference: {fileID: 0}
     - target: {fileID: 6261616537145183849, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
@@ -941,7 +941,7 @@ PrefabInstance:
     - target: {fileID: 6261616538562942393, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 6261616537145183848, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 6261616537145183848, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 6261616538329927643, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
         type: 3}
