@@ -15,7 +15,8 @@ public class Grid : MonoBehaviour, IPointerClickHandler
     public Transform _placedStoneTransform;
 
     public bool _rotateComplete;
-    public static Vector3 _rotateLength = new Vector3(0, 0, 180);
+    public static Vector3 _blackRotateLength = new Vector3(0, 0, 0);
+    public static Vector3 _whiteRotateLength = new Vector3(0, 0, 180);
     public static float _rotateSecond = 0.5f;
 
     // Start is called before the first frame update
@@ -59,6 +60,10 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         if (_placedStoneNumber == GameController.gridManager.gridStoneNumbers[_row, _column])
             return;
 
+        if(_row == 3 && _column == 3) {
+            Debug.Log("called");
+        }
+
         //回転処理が完了していなかったら戻る
         if (!_rotateComplete) return;
 
@@ -71,13 +76,18 @@ public class Grid : MonoBehaviour, IPointerClickHandler
 
             //デフォルトが黒が上なので、白の場合半回転させる
             if (GameController.gridManager.gridStoneNumbers[_row, _column] == 2) {
-                //_placedStoneObject.transform.Rotate(_rotateLength);
-                _placedStoneTransform.DORotate(_rotateLength, _rotateSecond);
+                _placedStoneTransform.DORotate(_whiteRotateLength, _rotateSecond);
             }
         } else {
             //もともと石が置かれていて石の更新があった場合、半回転させる
-            //_placedStoneObject.transform.Rotate(_rotateLength);
-            _placedStoneTransform.DORotate(_rotateLength, _rotateSecond);
+            //こうしないと、180°への回転固定になってしまう
+            //SetRelativeを入れたところ、変な角度(44°など)で止まってしまうことがあった
+            //たぶんプレイヤーとCPUの回転が衝突してるんじゃないかな
+            if(GameController.gridManager.gridStoneNumbers[_row, _column] == 1) {
+                _placedStoneTransform.DORotate(_blackRotateLength, _rotateSecond);
+            } else {
+                _placedStoneTransform.DORotate(_whiteRotateLength, _rotateSecond);
+            }
         }
 
         //置かれている石が何色かを更新
@@ -94,6 +104,7 @@ public class Grid : MonoBehaviour, IPointerClickHandler
             for (int column = 0; column < GridManager.GRIDSIZE; column++) {
                 text += GameController.gridManager.gridStoneNumbers[row, column] + " ";
             }
+            Debug.Log(text);
         }
     }
 }

@@ -3,37 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
-	public static int turnNumber = 0;
-	public static bool playerIsBlack;
+public class GameController : MonoBehaviour
+{
+    public static int turnNumber = 0;
+    public static bool playerIsBlack;
     public static bool playerIsPlaced = false;
 
     public static GridManager gridManager;
     public static UIManager uiManager;
     public static CPUManager cpuManager;
     public static Clear clear;
-	
-	// Use this for initialization
-	void Awake () {
+
+    // Use this for initialization
+    void Awake() {
         initGameController();
         gridManager.initGridManager();
 
         //プレイヤーが後手の場合、まずコンピューターに打たせる
         playerIsBlack = true;
-        if (turnNumber == 1)
-		{
-			playerIsBlack = false;
-			cpuManager.cpuProcess();
-        }	
-	}
+        playerIsPlaced = false;
+        if (turnNumber == 1) {
+            playerIsBlack = false;
+            cpuManager.cpuProcess();
+        }
+    }
 
     void Start() {
-       
+
 
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         //プレイヤーの処理
         //打つ、盤面の更新はstoneでやってくれるのでここで記述せずとも良い
         if (!gridManager._judgeCheckMate.checkmate) {
@@ -63,7 +64,7 @@ public class GameController : MonoBehaviour {
                 clear.clearProgress();
             }
         }
-	}
+    }
 
     private void initGameController() {
         gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();

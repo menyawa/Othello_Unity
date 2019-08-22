@@ -32,11 +32,11 @@ public class Timer : MonoBehaviour
     private void countTime() {
         if (GameController.playerIsPlaced) {
             if (computerTimeForSecond > 0) {
-                playerTimeForSecond -= Time.deltaTime;
+                computerTimeForSecond -= Time.deltaTime;
             } else {
                 if (computerTimeForMinutes > 0) {
-                    playerTimeForMinutes--;
-                    playerTimeForSecond += 60;
+                    computerTimeForMinutes--;
+                    computerTimeForSecond += 60;
                 }
             }
         } else {

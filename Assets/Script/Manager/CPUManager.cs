@@ -31,8 +31,6 @@ public class CPUManager
         GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
         GameController.uiManager._point.printPoint();
 
-        GameController.playerIsPlaced = false;
-
         Grid.printDebugGrids();
     }
 
