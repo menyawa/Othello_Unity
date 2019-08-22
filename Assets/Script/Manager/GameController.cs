@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
             if (!playerIsPlaced) {
                 gridManager._judgeCheckMate.passCount = 0;
                 if (GridManager.checkPassed(gridManager.gridStoneNumbers)) {
-                    uiManager._log.plusLog("Player", true);
+                    uiManager._log.plusLog("じぶん", true);
                     playerIsPlaced = true;
                     gridManager._judgeCheckMate.passCount++;
                 }

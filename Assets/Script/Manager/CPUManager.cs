@@ -13,7 +13,7 @@ public class CPUManager
         else GameController.turnNumber = 0;
 
         if (GridManager.checkPassed(GameController.gridManager.gridStoneNumbers)) {
-            GameController.uiManager._log.plusLog("CPU", true);
+            GameController.uiManager._log.plusLog("てき", true);
             GameController.gridManager._judgeCheckMate.passCount++;
         } else {
             int stoneNumber = GameController.turnNumber + 1;
@@ -22,7 +22,7 @@ public class CPUManager
 
             GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
             //ログを送信
-            GameController.uiManager._log.plusLog("CPU", false, row, column);
+            GameController.uiManager._log.plusLog("てき", false, row, column);
         }
 
         if (GameController.turnNumber == 0) GameController.turnNumber = 1;

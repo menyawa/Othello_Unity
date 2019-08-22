@@ -25,7 +25,7 @@ public class Log : MonoBehaviour
 
 	public void plusLog(string playerText, bool passed, int row = -1, int column = -1)
 	{
-        string text = playerText + ":";
+        string text = playerText + " ";
         //列番号などのログか、パスかを三項演算子で判断している
         text += passed ? "パス" : shapingNumber(row, column);
 		_log += text + "\n";
