@@ -1,4 +1,6 @@
 2019/08/23
+CPUの遅延を復活
+
 GameControllerのUpdateのネストを浅く修正
 打つ際に、passCountをリセットする処理を追加
 
