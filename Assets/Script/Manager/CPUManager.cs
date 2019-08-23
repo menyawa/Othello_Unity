@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CPUManager
 {
@@ -9,27 +10,34 @@ public class CPUManager
 
     //CPU側の処理手順を示した関数
     public void cpuProcess() {
-        if (GameController.turnNumber == 0) GameController.turnNumber = 1;
-        else GameController.turnNumber = 0;
+        //CPUの処理に遅延を持たせるため、暫定的な処理
+        //後でコルーチンにするかもしれない
+        float waitSecond = 3.0f;
+        DOVirtual.DelayedCall(waitSecond, 
+            () => {
+                if (GameController.turnNumber == 0) GameController.turnNumber = 1;
+                else GameController.turnNumber = 0;
 
-        if (GridManager.checkPassed(GameController.gridManager.gridStoneNumbers)) {
-            GameController.uiManager._log.plusLog("てき", true);
-            GameController.gridManager._judgeCheckMate.passCount++;
-        } else {
-            int stoneNumber = GameController.turnNumber + 1;
-            int row, column;
-            nextHand(out row, out column);
+                if (GridManager.checkPassed(GameController.gridManager.gridStoneNumbers)) {
+                    GameController.uiManager._log.plusLog("てき", true);
+                    GameController.gridManager._judgeCheckMate.passCount++;
+                } else {
+                    int stoneNumber = GameController.turnNumber + 1;
+                    int row, column;
+                    nextHand(out row, out column);
 
-            GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
-            //ログを送信
-            GameController.uiManager._log.plusLog("てき", false, row, column);
-        }
+                    GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
+                    //ログを送信
+                    GameController.uiManager._log.plusLog("てき", false, row, column);
+                }
 
-        if (GameController.turnNumber == 0) GameController.turnNumber = 1;
-        else GameController.turnNumber = 0;
+                if (GameController.turnNumber == 0) GameController.turnNumber = 1;
+                else GameController.turnNumber = 0;
 
-        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
-        GameController.uiManager._point.printPoint();
+                GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+                GameController.uiManager._point.printPoint();
+            }
+        );
     }
 
     /// <summary>
