@@ -6,38 +6,50 @@ using DG.Tweening;
 
 public class CPUManager
 {
+    public bool cpuThinked;
     public const int NUMBEROFSEARCHING = 1000;
 
     //CPU側の処理手順を示した関数
     public void cpuProcess() {
+        //思考中に何回も実行されることを防ぐ
+        if (cpuThinked) return;
+
+        cpuThinked = true;
+
         //CPUの処理に遅延を持たせるため、暫定的な処理
         //後でコルーチンにするかもしれない
-        float waitSecond = 3.0f;
-        DOVirtual.DelayedCall(waitSecond, 
-            () => {
-                if (GameController.turnNumber == 0) GameController.turnNumber = 1;
-                else GameController.turnNumber = 0;
+        //float waitSecond = 3.0f;
+        //DOVirtual.DelayedCall(waitSecond, 
+        //    () => {
+                
+        //    }
+        //);
 
-                if (GridManager.checkPassed(GameController.gridManager.gridStoneNumbers)) {
-                    GameController.uiManager._log.plusLog("てき", true);
-                    GameController.gridManager._judgeCheckMate.passCount++;
-                } else {
-                    int stoneNumber = GameController.turnNumber + 1;
-                    int row, column;
-                    nextHand(out row, out column);
+        if (GameController.turnNumber == 0) GameController.turnNumber = 1;
+        else GameController.turnNumber = 0;
 
-                    GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
-                    //ログを送信
-                    GameController.uiManager._log.plusLog("てき", false, row, column);
-                }
+        if (GridManager.checkPassed(GameController.gridManager.gridStoneNumbers)) {
+            GameController.uiManager._log.plusLog("てき", true);
+            GameController.gridManager._judgeCheckMate.passCount++;
+        } else {
+            int stoneNumber = GameController.turnNumber + 1;
+            int row, column;
+            nextHand(out row, out column);
 
-                if (GameController.turnNumber == 0) GameController.turnNumber = 1;
-                else GameController.turnNumber = 0;
+            GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
+            //ログを送信
+            GameController.uiManager._log.plusLog("てき", false, row, column);
+        }
 
-                GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
-                GameController.uiManager._point.printPoint();
-            }
-        );
+        if (GameController.turnNumber == 0) GameController.turnNumber = 1;
+        else GameController.turnNumber = 0;
+
+        //これらはここでやらないと、置かれてないのに点数が増減したり、プレイヤーの持ち時間が減り続けたりする
+        cpuThinked = false;
+        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+        GameController.uiManager._point.printPoint();
+        GameController.uiManager._log.printLog();
+        GameController.playerIsPlaced = false;
     }
 
     /// <summary>

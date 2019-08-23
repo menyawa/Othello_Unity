@@ -51,6 +51,7 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
         GameController.uiManager._point.printPoint();
         GameController.uiManager._log.plusLog("じぶん", false, _row, _column);
+        GameController.uiManager._log.printLog();
         GameController.playerIsPlaced = true;
     }
 
