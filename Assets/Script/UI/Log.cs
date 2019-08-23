@@ -27,6 +27,10 @@ public class Log : MonoBehaviour
 	}
 
     public void printLog() {
+        //クリア後はログを出さない
+        if (GameController.gridManager._judgeCheckMate.checkmate)
+            return;
+
         _text.text = _log;
         //テキストを更新したあと、一番下まで送る
         _scrollRect.verticalNormalizedPosition = 0;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class NextGrid
 {
@@ -16,6 +17,13 @@ public class NextGrid
         gridNumbers[row, column] = stone;
 
         //ここからひっくり返す処理
+        //打つ→ひっくり返す、の間に遅延を挟むため、このようにしている
+        //float delaySecond = 1.0f;
+        //DOVirtual.DelayedCall(delaySecond,
+        //    () => {
+                
+        //    }
+        //);
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, 1))
             gridNumbers = reverse(gridNumbers, row, column, 0, 1);// 右
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
