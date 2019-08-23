@@ -18,12 +18,12 @@ public class CPUManager
 
         //CPUの処理に遅延を持たせるため、暫定的な処理
         //後でコルーチンにするかもしれない
-        //float waitSecond = 3.0f;
-        //DOVirtual.DelayedCall(waitSecond, 
-        //    () => {
+        float waitSecond = 3.0f;
+        DOVirtual.DelayedCall(waitSecond,
+            () => {
                 
-        //    }
-        //);
+            }
+        );
 
         if (GameController.turnNumber == 0) GameController.turnNumber = 1;
         else GameController.turnNumber = 0;

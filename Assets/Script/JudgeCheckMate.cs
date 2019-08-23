@@ -14,8 +14,10 @@ public class JudgeCheckMate
 
     //勝敗を判断する関数
     public bool judgeCheckmate() {
+        Debug.Log(passCount);
+
         //2回パスされていない場合、まだ打てるマスがあるということ
-        if (passCount != 2) {
+        if (passCount < 2) {
             return false;
         } 
 
