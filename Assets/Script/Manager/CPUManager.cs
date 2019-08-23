@@ -33,7 +33,7 @@ public class CPUManager
                     int row, column;
                     nextHand(out row, out column);
 
-                    GameController.gridManager.gridStoneNumbers = GameController.gridManager._nextGrid.nextGrid(GameController.gridManager.gridStoneNumbers, row, column);
+                    GameController.gridManager._nextGrid.updateGrid(GameController.gridManager.gridStoneNumbers, row, column);
                     //ログを送信
                     GameController.uiManager._log.plusLog("てき", false, row, column);
 
@@ -84,7 +84,7 @@ public class CPUManager
                 scoreOfGrid[row, column] += fixScore(row, column);
 
                 //そこに打ったと仮定して、予想盤面を更新
-                predictionGridNumbers = GameController.gridManager._nextGrid.nextGrid(predictionGridNumbers, row, column);
+                GameController.gridManager._nextGrid.updateGrid(predictionGridNumbers, row, column);
 
                 //ここから最大1000手先までを予測、手番によって、評価値を足すor引く
                 for (int searchCount = 0; searchCount < NUMBEROFSEARCHING; searchCount++) {
@@ -97,7 +97,7 @@ public class CPUManager
                     maxScore = searchMaxScore(predictionGridNumbers, out rowOfMaxScore, out columnOfMaxScore);
                     if (maxScore != -1024) {
                         scoreOfGrid[row, column] -= maxScore;
-                        predictionGridNumbers = GameController.gridManager._nextGrid.nextGrid(predictionGridNumbers, rowOfMaxScore, columnOfMaxScore);
+                        GameController.gridManager._nextGrid.updateGrid(predictionGridNumbers, rowOfMaxScore, columnOfMaxScore);
 
                         //予測した手が端の場合、追加で評価値を引く
                         scoreOfGrid[row, column] -= fixScore(rowOfMaxScore, columnOfMaxScore);
@@ -112,7 +112,7 @@ public class CPUManager
                     maxScore = searchMaxScore(predictionGridNumbers, out rowOfMaxScore, out columnOfMaxScore);
                     if (maxScore != -1024) {
                         scoreOfGrid[row, column] += maxScore;
-                        predictionGridNumbers = GameController.gridManager._nextGrid.nextGrid(predictionGridNumbers, rowOfMaxScore, columnOfMaxScore);
+                        GameController.gridManager._nextGrid.updateGrid(predictionGridNumbers, rowOfMaxScore, columnOfMaxScore);
 
                         scoreOfGrid[row, column] += fixScore(rowOfMaxScore, columnOfMaxScore);
                     } else {

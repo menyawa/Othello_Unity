@@ -12,18 +12,25 @@ public class NextGrid
     /// <param name="row"></param>
     /// <param name="column"></param>
     /// <returns></returns>
-    public int[,] nextGrid(int[,] gridNumbers, int row, int column) {
+    public void updateGrid(int[,] gridNumbers, int row, int column) {
         int stone = GameController.turnNumber + 1;
         gridNumbers[row, column] = stone;
 
         //ここからひっくり返す処理
         //打つ→ひっくり返す、の間に遅延を挟むため、このようにしている
+        //return文はラムダ式の外に書かなければならず(ラムダ式が関数扱いされるため)、それだと遅延を挟んだ時中途半端な盤面が返却されるため、void型にしている
+        //参照渡しも考えたが、どうやら参照渡しをするとラムダ式の中ではその配列は使えないらしいためなし
         //float delaySecond = 1.0f;
         //DOVirtual.DelayedCall(delaySecond,
         //    () => {
                 
         //    }
         //);
+
+        reverseUpdateGrid(gridNumbers, row, column);
+    }
+
+    private void reverseUpdateGrid(int[,] gridNumbers, int row, int column) {
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 0, 1))
             gridNumbers = reverse(gridNumbers, row, column, 0, 1);// 右
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, 0))
@@ -40,8 +47,6 @@ public class NextGrid
             gridNumbers = reverse(gridNumbers, row, column, -1, 1); // 右上
         if (GameController.gridManager._judgeCanPutDown.canPutDown(gridNumbers, row, column, 1, -1))
             gridNumbers = reverse(gridNumbers, row, column, 1, -1); // 左下
-
-        return gridNumbers;
     }
 
     /// <summary>
