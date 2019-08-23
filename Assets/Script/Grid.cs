@@ -53,6 +53,7 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         GameController.uiManager._log.plusLog("じぶん", false, _row, _column);
         GameController.uiManager._log.printLog();
         GameController.playerIsPlaced = true;
+        GameController.gridManager._judgeCheckMate.passCount = 0;
     }
 
     //シーンの盤面に置かれている石を更新する関数

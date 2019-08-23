@@ -35,30 +35,29 @@ public class GameController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        //プレイヤーの処理
-        //打つ、盤面の更新はstoneでやってくれるのでここで記述せずとも良い
-        if (!gridManager._judgeCheckMate.checkmate) {
-            if (!playerIsPlaced) {
-                gridManager._judgeCheckMate.passCount = 0;
-                if (GridManager.checkPassed(gridManager.gridStoneNumbers)) {
-                    uiManager._log.plusLog("じぶん", true);
-                    playerIsPlaced = true;
-                    gridManager._judgeCheckMate.passCount++;
-                }
+        if (gridManager._judgeCheckMate.checkmate) {
+            return;
+        }
+
+        if (!playerIsPlaced) {
+            if (GridManager.checkPassed(gridManager.gridStoneNumbers)) {
+                uiManager._log.plusLog("じぶん", true);
+                playerIsPlaced = true;
+                gridManager._judgeCheckMate.passCount++;
             }
+        }
 
-            gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
+        gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
 
-            //勝敗の処理を更新しているため、ここでも終わっていないか判断する必要がある
-            if (playerIsPlaced && !gridManager._judgeCheckMate.checkmate) {
-                cpuManager.cpuProcess();
-            }
+        //勝敗の処理を更新しているため、ここでも終わっていないか判断する必要がある
+        if (playerIsPlaced && !gridManager._judgeCheckMate.checkmate) {
+            cpuManager.cpuProcess();
+        }
 
-            gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
+        gridManager._judgeCheckMate.checkmate = gridManager._judgeCheckMate.judgeCheckmate();
 
-            if (gridManager._judgeCheckMate.checkmate) {
-                clear.clearProgress();
-            }
+        if (gridManager._judgeCheckMate.checkmate) {
+            clear.clearProgress();
         }
     }
 
