@@ -2748,6 +2748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 6261616537614138052}
+  _sound: {fileID: 8300000, guid: 5fe866a9202d5a143a5ff5dda943c3c4, type: 3}
   _isPressed: 0
   _titleMenu: {fileID: 6261616537451935237}
   _turnNumberPanel: {fileID: 8021769980621068936}
@@ -3195,6 +3196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 6261616537903320701}
+  _sound: {fileID: 8300000, guid: accb04eaec8c4f243b56258799fe557b, type: 3}
   _isPressed: 0
 --- !u!1 &6261616538206459579
 GameObject:
@@ -4435,6 +4437,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6420346841013776394, guid: 7015940d74185744ab98a162497d88f2,
+        type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: bcf93dd767a15d14db3e51d6087879d6, type: 3}
+    - target: {fileID: 8831999227643398418, guid: 7015940d74185744ab98a162497d88f2,
+        type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: bcf93dd767a15d14db3e51d6087879d6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7015940d74185744ab98a162497d88f2, type: 3}
 --- !u!1 &8021769980621068936 stripped

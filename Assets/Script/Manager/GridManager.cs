@@ -13,6 +13,9 @@ public class GridManager : MonoBehaviour
     public JudgeCanPutDown _judgeCanPutDown;
     public JudgeCheckMate _judgeCheckMate;
 
+    public AudioClip _placeStoneSE;
+    public AudioClip _passSE;
+
     // Start is called before the first frame update
     void Start()
     {

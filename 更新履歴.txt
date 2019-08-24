@@ -1,4 +1,7 @@
 2019/08/23
+各種SEを追加
+Readmeを追加(使用素材を明記)
+
 TitleUIのテキストもTextMeshProに変更
 
 OutLineを使うため、クリアメニューのテキストをTextMeshProに変更

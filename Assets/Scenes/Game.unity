@@ -142,6 +142,7 @@ Transform:
   - {fileID: 319333210}
   - {fileID: 1676390870}
   - {fileID: 541724488}
+  - {fileID: 647107840}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,6 +387,9 @@ MonoBehaviour:
   - {fileID: 1489630717}
   - {fileID: 6261616538352945760}
   - {fileID: 6261616538352945759}
+  _winSound: {fileID: 8300000, guid: 495744f780ff261459679545bd97600f, type: 3}
+  _loseSound: {fileID: 8300000, guid: a68eed27bf0c5524398a254ab50c1cfe, type: 3}
+  _drawSound: {fileID: 8300000, guid: 2340e58c997bc5f4981570c6e7d9a1a7, type: 3}
   winTextRectTrans: {fileID: 186541481}
   loseTextRectTrans: {fileID: 983747939}
   drawTextRectTrans: {fileID: 1747728876}
@@ -448,6 +452,75 @@ MonoBehaviour:
   _log: {fileID: 6261616538352945766}
   _timer: {fileID: 6261616538352945757}
   _point: {fileID: 233337899}
+--- !u!1001 &551235608
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 113673270}
+    m_Modifications:
+    - target: {fileID: 3415988077197371149, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dc7b9a6caf19b0f46a7dd1e4540c0896, type: 3}
 --- !u!1 &616680955
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +587,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &647107840 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1110837634410376815, guid: dc7b9a6caf19b0f46a7dd1e4540c0896,
+    type: 3}
+  m_PrefabInstance: {fileID: 551235608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &983747939 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4507599869578174547, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
@@ -589,6 +668,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stonePrefab: {fileID: 1801193876828144, guid: d344feb425dad604699b89b36b0aa27a,
     type: 3}
+  _placeStoneSE: {fileID: 8300000, guid: 07190aad7e4389345999dcff94a4f445, type: 3}
+  _passSE: {fileID: 8300000, guid: accb04eaec8c4f243b56258799fe557b, type: 3}
 --- !u!224 &1747728876 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1730376718349611921, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,

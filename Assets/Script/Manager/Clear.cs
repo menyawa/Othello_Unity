@@ -10,6 +10,10 @@ public class Clear : MonoBehaviour
 {
     public RectTransform[] clearMenuUIsRectTrans;
 
+    [SerializeField] private AudioClip _winSound;
+    [SerializeField] private AudioClip _loseSound;
+    [SerializeField] private AudioClip _drawSound;
+
     [SerializeField] private RectTransform winTextRectTrans;
     [SerializeField] private RectTransform loseTextRectTrans;
     [SerializeField] private RectTransform drawTextRectTrans;
@@ -30,7 +34,11 @@ public class Clear : MonoBehaviour
 
     public void clearProgress()
     {
-        RectTransform winnerTextRectTrans = judgeWinner();
+        //念の為、ポイントを最新にしておく
+        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
+
+        RectTransform winnerTextRectTrans = selectWinnerTextRectTrans();
+        AudioClip clearSound = selectClearSound();
         int winnerPoint = calculateWinnerPoint();
         pointText.text = "とくてん " + winnerPoint.ToString();
 
@@ -38,17 +46,17 @@ public class Clear : MonoBehaviour
         //勝敗のテキストはどれになるかがわからないため、ここで最初に代入する
         clearMenuUIsRectTrans[1] = winnerTextRectTrans;
         Sequence clearMenuSeq = DOTween.Sequence();
+        //クリア時のSEも一緒に鳴らす
+        clearMenuSeq.AppendCallback(() => { GameController.audioManager.playSound(clearSound); });
+
         float waitSecond = 1.0f;
         for (int index = 0; index < clearMenuUIsRectTrans.Length; index++) {
             clearMenuSeq.Append(clearMenuUIsRectTrans[index].DOScale(UIManager.DEFAULTSCALE, waitSecond).SetEase(Ease.InOutElastic));
         }
     }
 
-    public RectTransform judgeWinner() {
+    public RectTransform selectWinnerTextRectTrans() {
         RectTransform winnerTextRectTrans = null;
-
-        //念の為、ポイントを最新にしておく
-        GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
 
         if (GameController.uiManager._point.blackPoint > GameController.uiManager._point.whitePoint) {
             winnerTextRectTrans = GameController.playerIsBlack ? winTextRectTrans : loseTextRectTrans;
@@ -59,6 +67,20 @@ public class Clear : MonoBehaviour
         }
 
         return winnerTextRectTrans;
+    }
+
+    public AudioClip selectClearSound() {
+        AudioClip clearSound = null;
+
+        if (GameController.uiManager._point.blackPoint > GameController.uiManager._point.whitePoint) {
+            clearSound = GameController.playerIsBlack ? _winSound : _loseSound;
+        } else if (GameController.uiManager._point.whitePoint > GameController.uiManager._point.blackPoint) {
+            clearSound = GameController.playerIsBlack ? _loseSound : _winSound;
+        } else {
+            clearSound = _drawSound;
+        }
+
+        return clearSound;
     }
 
     /// <summary>

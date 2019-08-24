@@ -71,6 +71,7 @@
     <Compile Include="Assets\Script\Grid.cs" />
     <Compile Include="Assets\Script\JudgeCanPutDown.cs" />
     <Compile Include="Assets\Script\JudgeCheckMate.cs" />
+    <Compile Include="Assets\Script\Manager\AudioManager.cs" />
     <Compile Include="Assets\Script\Manager\Clear.cs" />
     <Compile Include="Assets\Script\Manager\CPUManager.cs" />
     <Compile Include="Assets\Script\Manager\GameController.cs" />

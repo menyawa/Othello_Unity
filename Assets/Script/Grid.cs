@@ -48,6 +48,7 @@ public class Grid : MonoBehaviour, IPointerClickHandler
         //盤面に打つ
         GameController.gridManager._nextGrid.updateGrid(GameController.gridManager.gridStoneNumbers, _row, _column);
 
+        GameController.audioManager.playSound(GameController.gridManager._placeStoneSE);
         GameController.uiManager._point.countPoint(GameController.gridManager.gridStoneNumbers);
         GameController.uiManager._point.printPoint();
         GameController.uiManager._log.plusLog("じぶん", false, _row, _column);

@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 3796740248996799163}
   - component: {fileID: 8229345103176589119}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [NICOMOJI-PLUS_1 Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [White OutLine + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 7666729597459810121}
+  _sound: {fileID: 8300000, guid: accb04eaec8c4f243b56258799fe557b, type: 3}
   _isPressed: 0
 --- !u!1 &7666729597573411882
 GameObject:
@@ -961,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 7666729597573411887}
+  _sound: {fileID: 8300000, guid: 5fe866a9202d5a143a5ff5dda943c3c4, type: 3}
   _isPressed: 0
   _titleMenu: {fileID: 7666729597029695416}
   _turnNumberPanel: {fileID: 6726675114516287678}
@@ -1076,11 +1078,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Select Hand Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 8042110335178087852, guid: 7015940d74185744ab98a162497d88f2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8042110335178087843, guid: 7015940d74185744ab98a162497d88f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1186,6 +1183,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6420346841013776394, guid: 7015940d74185744ab98a162497d88f2,
+        type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: bcf93dd767a15d14db3e51d6087879d6, type: 3}
+    - target: {fileID: 8831999227643398418, guid: 7015940d74185744ab98a162497d88f2,
+        type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: bcf93dd767a15d14db3e51d6087879d6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7015940d74185744ab98a162497d88f2, type: 3}
 --- !u!1 &6726675114516287678 stripped
