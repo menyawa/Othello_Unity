@@ -4,6 +4,7 @@ using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class Clear : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Clear : MonoBehaviour
     [SerializeField] private RectTransform loseTextRectTrans;
     [SerializeField] private RectTransform drawTextRectTrans;
 
-    [SerializeField] private Text pointText;
+    [SerializeField] private TextMeshProUGUI pointText;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class Clear : MonoBehaviour
     {
         RectTransform winnerTextRectTrans = judgeWinner();
         int winnerPoint = calculateWinnerPoint();
-        pointText.text = "Point:" + winnerPoint.ToString();
+        pointText.text = "とくてん " + winnerPoint.ToString();
 
         //上から順番にクリア時のUIを出していく
         //勝敗のテキストはどれになるかがわからないため、ここで最初に代入する
