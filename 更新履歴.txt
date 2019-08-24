@@ -1,4 +1,6 @@
 2019/08/23
+TitleUIのテキストもTextMeshProに変更
+
 OutLineを使うため、クリアメニューのテキストをTextMeshProに変更
 クリアメニューのポイントの文面を微修正
 
