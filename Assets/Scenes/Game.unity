@@ -381,8 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c3b5e1a787a8941b45410ea74e09d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _backGroundPanel: {fileID: 1440173562}
   clearMenuUIsRectTrans:
-  - {fileID: 1452161786}
   - {fileID: 0}
   - {fileID: 1489630717}
   - {fileID: 6261616538352945760}
@@ -599,9 +599,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6261616538352945756}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1452161786 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6339387410658918165, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
+--- !u!1 &1440173562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339387410658918170, guid: c8b8f3a90e4d8874ebbd309ba5e9f9df,
     type: 3}
   m_PrefabInstance: {fileID: 6261616538352945756}
   m_PrefabAsset: {fileID: 0}

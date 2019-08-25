@@ -8,6 +8,7 @@ using TMPro;
 
 public class Clear : MonoBehaviour
 {
+    [SerializeField] private GameObject _backGroundPanel;
     public RectTransform[] clearMenuUIsRectTrans;
 
     [SerializeField] private AudioClip _winSound;
@@ -44,7 +45,8 @@ public class Clear : MonoBehaviour
 
         //上から順番にクリア時のUIを出していく
         //勝敗のテキストはどれになるかがわからないため、ここで最初に代入する
-        clearMenuUIsRectTrans[1] = winnerTextRectTrans;
+        _backGroundPanel.SetActive(true);
+        clearMenuUIsRectTrans[0] = winnerTextRectTrans;
         Sequence clearMenuSeq = DOTween.Sequence();
         //クリア時のSEも一緒に鳴らす
         clearMenuSeq.AppendCallback(() => { GameController.audioManager.playSound(clearSound); });
